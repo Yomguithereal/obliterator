@@ -1,0 +1,4 @@
+node_modules
+.gitignore
+.DS_Store
+test.js
