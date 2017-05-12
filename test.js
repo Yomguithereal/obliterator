@@ -23,7 +23,7 @@ describe('Iterator', function() {
 
   describe('Iterator.empty', function() {
 
-    it('should return an empty iterator.', function() {
+    it('should return an empty iterator.', function() {
 
       var empty = Iterator.empty();
 
