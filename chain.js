@@ -14,21 +14,15 @@ var Iterator = require('./iterator.js');
  */
 module.exports = function chain() {
   var iterators = arguments,
-      done = false,
       current,
       i = -1;
 
   return new Iterator(function iterate() {
-    if (done)
-      return {done: true};
-
     if (!current) {
       i++;
 
-      if (i >= iterators.length) {
-        done = true;
+      if (i >= iterators.length)
         return {done: true};
-      }
 
       current = iterators[i];
     }

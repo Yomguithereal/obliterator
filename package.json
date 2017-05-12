@@ -32,7 +32,8 @@
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config",
     "globals": {
-      "Set": true
+      "Set": true,
+      "Symbol": true
     }
   }
 }

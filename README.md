@@ -15,6 +15,7 @@ npm install --save obliterator
 ## Summary
 
 * [chain](#chain)
+* [combinations](#combinations)
 * [consume](#consume)
 
 ## chain
@@ -35,6 +36,25 @@ chained.next();
 >>> {done: false, value: 'a'}
 chained.next();
 >>> {done: false, value: 'b'}
+```
+
+## combinations
+
+Returns an iterator of combinations over the given array and for the given combination size.
+
+Note that for performance reasons, the yielded combination is always the same object.
+
+```js
+import combinations from 'obliterator/combinations';
+// Or
+import {combinations} from 'obliterator';
+
+const iterator = combinations(['A', 'B', 'C', 'D'], 2);
+
+iterator.next().value;
+>>> ['A', 'B']
+iterator.next().value;
+>>> ['A', 'C']
 ```
 
 ## consume
