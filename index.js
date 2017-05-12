@@ -10,6 +10,7 @@ module.exports = {
   combinations: require('./combinations.js'),
   consume: require('./consume.js'),
   filter: require('./filter.js'),
+  map: require('./map.js'),
   permutations: require('./permutations.js'),
   powerSet: require('./power-set.js')
 };

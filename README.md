@@ -24,6 +24,7 @@ npm install --save obliterator
 * [combinations](#combinations)
 * [consume](#consume)
 * [filter](#filter)
+* [map](#map)
 * [permutations](#permutations)
 * [powerSet](#powerSet)
 
@@ -123,6 +124,27 @@ iterator.next().value
 >>> 2
 iterator.next().value
 >>> 4
+```
+
+## map
+
+Function returning an iterator mapping another one's values using the given function.
+
+```js
+import map from 'obliterator/map';
+// Or
+import {map} from 'obliterator';
+
+const set = new Set([1, 2, 3, 4, 5]);
+
+const triple = x => x * 3;
+
+const iterator = map(triple, set.values());
+
+iterator.next().value
+>>> 3
+iterator.next().value
+>>> 6
 ```
 
 ## permutations

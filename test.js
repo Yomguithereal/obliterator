@@ -123,6 +123,21 @@ describe('#.filter', function() {
   });
 });
 
+describe('#.map', function() {
+
+  it('should correctly map the given iterator.', function() {
+    var set = new Set([1, 2, 3, 4, 5]);
+
+    var inc = function(a) {
+      return a + 1;
+    };
+
+    var iterator = lib.map(inc, set.values());
+
+    assert.deepEqual(lib.consume(iterator), [2, 3, 4, 5, 6]);
+  });
+});
+
 describe('#.permutations', function() {
 
   it('should throw when given arguments are invalid.', function() {
