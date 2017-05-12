@@ -23,6 +23,7 @@ npm install --save obliterator
 * [chain](#chain)
 * [combinations](#combinations)
 * [consume](#consume)
+* [filter](#filter)
 * [permutations](#permutations)
 * [powerSet](#powerSet)
 
@@ -101,6 +102,27 @@ const set = new Set([1, 2, 3]);
 
 consume(set.values());
 >>> [1, 2, 3]
+```
+
+## filter
+
+Function returning an iterator filtering another one's values using the given predicate.
+
+```js
+import filter from 'obliterator/filter';
+// Or
+import {filter} from 'obliterator';
+
+const set = new Set([1, 2, 3, 4, 5]);
+
+const even = x => x % 2 === 0;
+
+const iterator = filter(even, set.values());
+
+iterator.next().value
+>>> 2
+iterator.next().value
+>>> 4
 ```
 
 ## permutations

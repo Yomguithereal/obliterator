@@ -9,6 +9,7 @@ module.exports = {
   chain: require('./chain.js'),
   combinations: require('./combinations.js'),
   consume: require('./consume.js'),
+  filter: require('./filter.js'),
   permutations: require('./permutations.js'),
   powerSet: require('./power-set.js')
 };

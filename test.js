@@ -108,6 +108,21 @@ describe('#.consume', function() {
   });
 });
 
+describe('#.filter', function() {
+
+  it('should correctly filter the given iterator.', function() {
+    var set = new Set([1, 2, 3, 4, 5]);
+
+    var even = function(a) {
+      return a % 2 === 0;
+    };
+
+    var iterator = lib.filter(even, set.values());
+
+    assert.deepEqual(lib.consume(iterator), [2, 4]);
+  });
+});
+
 describe('#.permutations', function() {
 
   it('should throw when given arguments are invalid.', function() {
