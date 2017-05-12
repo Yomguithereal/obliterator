@@ -17,6 +17,7 @@ npm install --save obliterator
 * [chain](#chain)
 * [combinations](#combinations)
 * [consume](#consume)
+* [permutations](#permutations)
 
 ## chain
 
@@ -40,7 +41,7 @@ chained.next();
 
 ## combinations
 
-Returns an iterator of combinations over the given array and for the given combination size.
+Returns an iterator of combinations of the given array and of the given size.
 
 Note that for performance reasons, the yielded combination is always the same object.
 
@@ -72,6 +73,31 @@ consume(set.values());
 >>> [1, 2, 3]
 ```
 
+## permutations
+
+Returns an iterator of permutations of the given array and of the given size.
+
+Note that for performance reasons, the yielded permutation is always the same object.
+
+```js
+import permutations from 'obliterator/permutations';
+// Or
+import {permutations} from 'obliterator';
+
+let iterator = permutations([1, 2, 3]);
+
+iterator.next().value
+>>> [1, 2, 3]
+iterator.next().value
+>>> [1, 3, 2]
+
+iterator = permutations(['A', 'B', 'C', 'D'], 2);
+
+iterator.next().value;
+>>> ['A', 'B']
+iterator.next().value;
+>>> ['A', 'C']
+```
 
 # Contribution
 

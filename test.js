@@ -71,3 +71,58 @@ describe('#.consume', function() {
     assert.deepEqual(lib.consume(set.values()), [1, 2, 3]);
   });
 });
+
+describe('#.permutations', function() {
+
+  it('should throw when given arguments are invalid.', function() {
+    assert.throws(function() {
+      lib.permutations(null, 3);
+    }, /array/);
+
+    assert.throws(function() {
+      lib.permutations([1, 2, 3], 'test');
+    }, /number/);
+
+    assert.throws(function() {
+      lib.permutations([1, 2, 3], 5);
+    }, /exceed/);
+  });
+
+  it('should produce the correct permutations.', function() {
+    var iterator = lib.permutations('ABCD'.split(''), 2);
+
+    assert.deepEqual(iterator.next().value, ['A', 'B']);
+    assert.deepEqual(iterator.next().value, ['A', 'C']);
+    assert.deepEqual(iterator.next().value, ['A', 'D']);
+    assert.deepEqual(iterator.next().value, ['B', 'A']);
+    assert.deepEqual(iterator.next().value, ['B', 'C']);
+    assert.deepEqual(iterator.next().value, ['B', 'D']);
+    assert.deepEqual(iterator.next().value, ['C', 'A']);
+    assert.deepEqual(iterator.next().value, ['C', 'B']);
+    assert.deepEqual(iterator.next().value, ['C', 'D']);
+    assert.deepEqual(iterator.next().value, ['D', 'A']);
+    assert.deepEqual(iterator.next().value, ['D', 'B']);
+    assert.deepEqual(iterator.next().value, ['D', 'C']);
+    assert.deepEqual(iterator.next().done, true);
+
+    iterator = lib.permutations([0, 1, 2], 3);
+
+    assert.deepEqual(iterator.next().value, [0, 1, 2]);
+    assert.deepEqual(iterator.next().value, [0, 2, 1]);
+    assert.deepEqual(iterator.next().value, [1, 0, 2]);
+    assert.deepEqual(iterator.next().value, [1, 2, 0]);
+    assert.deepEqual(iterator.next().value, [2, 0, 1]);
+    assert.deepEqual(iterator.next().value, [2, 1, 0]);
+    assert.deepEqual(iterator.next().done, true);
+
+    iterator = lib.permutations([0, 1, 2]);
+
+    assert.deepEqual(iterator.next().value, [0, 1, 2]);
+    assert.deepEqual(iterator.next().value, [0, 2, 1]);
+    assert.deepEqual(iterator.next().value, [1, 0, 2]);
+    assert.deepEqual(iterator.next().value, [1, 2, 0]);
+    assert.deepEqual(iterator.next().value, [2, 0, 1]);
+    assert.deepEqual(iterator.next().value, [2, 1, 0]);
+    assert.deepEqual(iterator.next().done, true);
+  });
+});

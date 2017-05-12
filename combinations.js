@@ -6,6 +6,9 @@
  */
 var Iterator = require('./iterator.js');
 
+/**
+ * Helper mapping indices to items.
+ */
 function indicesToItems(target, items, indices, r) {
   for (var i = 0; i < r; i++)
     target[i] = items[indices[i]];

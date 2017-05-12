@@ -33,7 +33,8 @@
     "extends": "@yomguithereal/eslint-config",
     "globals": {
       "Set": true,
-      "Symbol": true
+      "Symbol": true,
+      "Uint32Array": true
     }
   }
 }
