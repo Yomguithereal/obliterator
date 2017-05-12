@@ -7,6 +7,42 @@
 var assert = require('assert'),
     lib = require('./');
 
+var Iterator = lib.Iterator;
+
+describe('Iterator', function() {
+
+  describe('Iterator.is', function() {
+    it('should properly detect iterators.', function() {
+
+      assert.strictEqual(Iterator.is(null), false);
+      assert.strictEqual(Iterator.is([1, 2, 3]), false);
+      assert.strictEqual(Iterator.is(new Iterator()), true);
+      assert.strictEqual(Iterator.is((new Set()).values()), true);
+    });
+  });
+
+  describe('Iterator.empty', function() {
+
+    it('should return an empty iterator.', function() {
+
+      var empty = Iterator.empty();
+
+      assert.strictEqual(empty.next().done, true);
+    });
+  });
+
+  describe('Iterator.of', function() {
+
+    it('should return an iterator of a single value.', function() {
+
+      var iterator = Iterator.of(34);
+
+      assert.strictEqual(iterator.next().value, 34);
+      assert.strictEqual(iterator.next().done, true);
+    });
+  });
+});
+
 describe('#.chain', function() {
 
   it('should properly chain the given iterators.', function() {

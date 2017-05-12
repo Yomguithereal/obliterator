@@ -14,11 +14,36 @@ npm install --save obliterator
 
 ## Summary
 
+* [Iterator](#iterator)
+
 * [chain](#chain)
 * [combinations](#combinations)
 * [consume](#consume)
 * [permutations](#permutations)
 * [powerSet](#powerSet)
+
+## Iterator
+
+A handy Iterator class with safeguards and usable with ES2015's `for ... of` loop constructs & spread operator.
+
+```js
+import Iterator from 'obliterator/iterator';
+// Or
+import {Iterator} from 'obliterator';
+
+const iterator = new Iterator(function() {
+  // Define what the `next` function does
+});
+
+// Checking that the given value is an iterator (native or else)
+Iterator.is(value);
+
+// Creating an empty iterator
+const emptyIterator = Iterator.empty();
+
+// Creating a simple iterator from a single value
+const simpleIterator = Iterator.of(34);
+```
 
 ## chain
 
