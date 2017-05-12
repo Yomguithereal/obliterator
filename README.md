@@ -14,7 +14,11 @@ npm install --save obliterator
 
 ## Summary
 
+*Classes*
+
 * [Iterator](#iterator)
+
+*Functions*
 
 * [chain](#chain)
 * [combinations](#combinations)
