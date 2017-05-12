@@ -18,6 +18,7 @@ npm install --save obliterator
 * [combinations](#combinations)
 * [consume](#consume)
 * [permutations](#permutations)
+* [powerSet](#powerSet)
 
 ## chain
 
@@ -97,6 +98,23 @@ iterator.next().value;
 >>> ['A', 'B']
 iterator.next().value;
 >>> ['A', 'C']
+```
+
+## powerSet
+
+Returns an iterator of sets composing the power set of the given array.
+
+```js
+import powerSet from 'obliterator/power-set';
+// Or
+import {powerSet} from 'obliterator';
+
+const iterator = powerSet(['A', 'B', 'C']);
+
+iterator.next().value;
+>>> []
+iterator.next().value;
+>>> ['A']
 ```
 
 # Contribution

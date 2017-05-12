@@ -80,6 +80,23 @@ Iterator.empty = function() {
 };
 
 /**
+ * Returning whether the given value is an iterator.
+ *
+ * @param  {any} value - Value.
+ * @return {boolean}
+ */
+Iterator.is = function(value) {
+  if (value instanceof Iterator)
+    return true;
+
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof value.next === 'function'
+  );
+};
+
+/**
  * Exporting.
  */
 module.exports = Iterator;

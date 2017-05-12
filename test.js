@@ -126,3 +126,20 @@ describe('#.permutations', function() {
     assert.deepEqual(iterator.next().done, true);
   });
 });
+
+describe('#.powerSet', function() {
+
+  it('should return the correct power set.', function() {
+    var iterator = lib.powerSet('ABC'.split(''));
+
+    assert.deepEqual(iterator.next().value, []);
+    assert.deepEqual(iterator.next().value, ['A']);
+    assert.deepEqual(iterator.next().value, ['B']);
+    assert.deepEqual(iterator.next().value, ['C']);
+    assert.deepEqual(iterator.next().value, ['A', 'B']);
+    assert.deepEqual(iterator.next().value, ['A', 'C']);
+    assert.deepEqual(iterator.next().value, ['B', 'C']);
+    assert.deepEqual(iterator.next().value, ['A', 'B', 'C']);
+    assert.deepEqual(iterator.next().done, true);
+  });
+});
