@@ -24,6 +24,7 @@ npm install --save obliterator
 * [combinations](#combinations)
 * [consume](#consume)
 * [filter](#filter)
+* [forEach](#foreach)
 * [map](#map)
 * [match](#match)
 * [permutations](#permutations)
@@ -126,6 +127,22 @@ iterator.next().value
 >>> 2
 iterator.next().value
 >>> 4
+```
+
+## forEach
+
+Helper function that can be used to iterate easily over the given iterator.
+
+```js
+import forEach from 'obliterator/foreach';
+// Or
+import {forEach} from 'obliterator';
+
+const set = new Set(['apple', 'banana']);
+
+forEach(set.values(), (value, i) => {
+  console.log(i, value);
+});
 ```
 
 ## map

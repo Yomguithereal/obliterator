@@ -123,6 +123,27 @@ describe('#.filter', function() {
   });
 });
 
+describe('#.forEach', function() {
+
+  it('should throw when given arguments are invalid.', function() {
+    assert.throws(function() {
+      lib.forEach(null, 3);
+    }, /iterator/);
+
+    assert.throws(function() {
+      lib.forEach(Iterator.of(4), 'test');
+    }, /callback/);
+  });
+
+  it('should correctly iterate over the given iterator.', function() {
+    var set = new Set([1, 2, 3]);
+
+    lib.forEach(set.values(), function(value, i) {
+      assert.strictEqual(value, i + 1);
+    });
+  });
+});
+
 describe('#.map', function() {
 
   it('should correctly map the given iterator.', function() {
