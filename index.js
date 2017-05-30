@@ -11,6 +11,7 @@ module.exports = {
   consume: require('./consume.js'),
   filter: require('./filter.js'),
   map: require('./map.js'),
+  match: require('./match.js'),
   permutations: require('./permutations.js'),
   powerSet: require('./power-set.js')
 };

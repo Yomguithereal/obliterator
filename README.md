@@ -25,6 +25,7 @@ npm install --save obliterator
 * [consume](#consume)
 * [filter](#filter)
 * [map](#map)
+* [match](#match)
 * [permutations](#permutations)
 * [powerSet](#powerSet)
 
@@ -145,6 +146,23 @@ iterator.next().value
 >>> 3
 iterator.next().value
 >>> 6
+```
+
+## match
+
+Function returning an iterator over the matches of a given regex applied to the target string.
+
+```js
+import match from 'obliterator/match';
+// Or
+import {match} from 'obliterator';
+
+const iterator = match(/t/, 'test');
+
+iterator.next().value.index
+>>> 0
+iterator.next().value.index
+>>> 3
 ```
 
 ## permutations

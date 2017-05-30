@@ -138,6 +138,37 @@ describe('#.map', function() {
   });
 });
 
+describe('#.match', function() {
+
+  it('should throw when given invalid arguments.', function() {
+    assert.throws(function() {
+      lib.match(null);
+    }, /pattern/);
+
+    assert.throws(function() {
+      lib.match(/t/, null);
+    }, /target/);
+  });
+
+  it('should correctly iterate over the matches.', function() {
+    var index = function(match) {
+      return match.index;
+    };
+
+    var iterator = lib.match(/t/, 'test');
+
+    var result = lib.consume(iterator).map(index);
+
+    assert.deepEqual(result, [0]);
+
+    iterator = lib.match(/t/g, 'test');
+
+    result = lib.consume(iterator).map(index);
+
+    assert.deepEqual(result, [0, 3]);
+  });
+});
+
 describe('#.permutations', function() {
 
   it('should throw when given arguments are invalid.', function() {
