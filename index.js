@@ -13,5 +13,6 @@ module.exports = {
   map: require('./map.js'),
   match: require('./match.js'),
   permutations: require('./permutations.js'),
-  powerSet: require('./power-set.js')
+  powerSet: require('./power-set.js'),
+  split: require('./split.js')
 };

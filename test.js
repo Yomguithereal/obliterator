@@ -240,3 +240,30 @@ describe('#.powerSet', function() {
     assert.deepEqual(iterator.next().done, true);
   });
 });
+
+describe('#.split', function() {
+
+  it('should throw when given invalid arguments.', function() {
+    assert.throws(function() {
+      lib.split(null);
+    }, /pattern/);
+
+    assert.throws(function() {
+      lib.split(/t/, null);
+    }, /target/);
+  });
+
+  it('should correctly iterate over the splits.', function() {
+    var iterator = lib.split(/t/, 'hellotworldtsuper');
+
+    var results = lib.consume(iterator);
+
+    assert.deepEqual(results, ['hello', 'world', 'super']);
+
+    iterator = lib.split(/\|/g, '|hello|world|');
+
+    results = lib.consume(iterator);
+
+    assert.deepEqual(results, ['', 'hello', 'world', '']);
+  });
+});

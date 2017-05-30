@@ -28,6 +28,7 @@ npm install --save obliterator
 * [match](#match)
 * [permutations](#permutations)
 * [powerSet](#powerSet)
+* [split](#split)
 
 ## Iterator
 
@@ -206,6 +207,23 @@ iterator.next().value;
 >>> []
 iterator.next().value;
 >>> ['A']
+```
+
+## split
+
+Returns an iterator over the splits of the target string, according to the given RegExp pattern.
+
+```js
+import split from 'obliterator/split';
+// Or
+import {split} from 'obliterator';
+
+const iterator = split(/;/g, 'hello;world;super');
+
+iterator.next().value;
+>>> 'hello'
+iterator.next().value;
+>>> 'world'
 ```
 
 # Contribution
