@@ -13,10 +13,12 @@ var Iterator = require('./iterator.js');
  * @return {RegExp}
  */
 function makeGlobal(pattern) {
-  var flags = pattern.flags;
+  var flags = 'g';
 
-  if (!pattern.global)
-    flags += 'g';
+  if (pattern.multiline) flags += 'm';
+  if (pattern.ignoreCase) flags += 'i';
+  if (pattern.sticky) flags += 'y';
+  if (pattern.unicode) flags += 'u';
 
   return new RegExp(pattern.source, flags);
 }
