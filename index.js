@@ -15,5 +15,6 @@ module.exports = {
   match: require('./match.js'),
   permutations: require('./permutations.js'),
   powerSet: require('./power-set.js'),
+  range: require('./range.js'),
   split: require('./split.js')
 };

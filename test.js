@@ -262,6 +262,39 @@ describe('#.powerSet', function() {
   });
 });
 
+describe('#.range', function() {
+
+  it('should return the correct range.', function() {
+
+    assert.deepEqual(
+      lib.consume(lib.range(4)),
+      [0, 1, 2, 3]
+    );
+
+    assert.deepEqual(
+      lib.consume(lib.range(1, 5)),
+      [1, 2, 3, 4]
+    );
+
+    assert.deepEqual(
+      lib.consume(lib.range(0, 20, 5)),
+      [0, 5, 10, 15]
+    );
+
+    // TODO: handle 0 step
+    // TODO: handle negatives
+    // assert.deepEqual(
+    //   lib.consume(lib.range(1, 4, 0)),
+    //   [0, 1, 1, 1]
+    // );
+
+    assert.deepEqual(
+      lib.consume(lib.range(0)),
+      []
+    );
+  });
+});
+
 describe('#.split', function() {
 
   it('should throw when given invalid arguments.', function() {

@@ -15,7 +15,7 @@ var Iterator = require('./iterator.js');
 function makeGlobal(pattern) {
   var flags = pattern.flags;
 
-  if (!~flags.indexOf('g'))
+  if (!pattern.global)
     flags += 'g';
 
   return new RegExp(pattern.source, flags);
@@ -35,6 +35,8 @@ module.exports = function split(pattern, string) {
   if (typeof string !== 'string')
     throw new Error('obliterator/split: invalid target. Expecting a string.');
 
+  // NOTE: cloning the pattern has a performance cost but side effects for not
+  // doing so might be worse.
   pattern = makeGlobal(pattern);
 
   var consumed = false,
