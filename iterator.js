@@ -29,6 +29,7 @@ function Iterator(next) {
  *
  * @return {object}
  */
+// NOTE: maybe this should dropped for performance?
 Iterator.prototype.next = function() {
   if (this.done)
     return {done: true};
@@ -50,20 +51,21 @@ if (typeof Symbol !== 'undefined')
   };
 
 /**
- * Returning an iterator of the given value.
+ * Returning an iterator of the given values.
  *
- * @param  {any} value - Value.
+ * @param  {any...} values - Values.
  * @return {Iterator}
  */
-Iterator.of = function(value) {
-  var consumed = false;
+Iterator.of = function() {
+  var args = arguments,
+      l = args.length,
+      i = 0;
 
   return new Iterator(function() {
-    if (consumed)
+    if (i >= l)
       return {done: true};
 
-    consumed = true;
-    return {value: value};
+    return {done: false, value: args[i++]};
   });
 };
 

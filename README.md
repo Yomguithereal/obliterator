@@ -52,6 +52,9 @@ const emptyIterator = Iterator.empty();
 
 // Creating a simple iterator from a single value
 const simpleIterator = Iterator.of(34);
+
+// Creating a simple iterator from multiple values
+const multipleIterator = Iterator.of(1, 2, 3);
 ```
 
 ## chain

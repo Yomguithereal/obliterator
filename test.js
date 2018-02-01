@@ -40,6 +40,12 @@ describe('Iterator', function() {
       assert.strictEqual(iterator.next().value, 34);
       assert.strictEqual(iterator.next().done, true);
     });
+
+    it('should be variadic.', function() {
+      var iterator = Iterator.of(1, 2, 3);
+
+      assert.deepEqual(lib.consume(iterator), [1, 2, 3]);
+    });
   });
 });
 
