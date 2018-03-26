@@ -368,3 +368,42 @@ describe('#.take', function() {
     assert.deepEqual(chunk, []);
   });
 });
+
+describe('#.takeInto', function() {
+
+  it('should properly take the given iterator.', function() {
+    var set = new Set([1, 2, 3]);
+
+    var array = lib.takeInto(Uint8Array, set.values(), 3);
+
+    assert.deepEqual(array, [1, 2, 3]);
+    assert(array instanceof Uint8Array);
+  });
+
+  it('should be able to return n elements', function() {
+    var set = new Set([1, 2, 3]);
+
+    var array = lib.takeInto(Uint8Array, set.values(), 2);
+
+    assert.deepEqual(array, [1, 2]);
+    assert(array instanceof Uint8Array);
+  });
+
+  it('should slice end arrays.', function() {
+    var set = new Set([1, 2, 3]);
+    var iterator = set.values();
+
+    var chunk = lib.takeInto(Uint8Array, iterator, 2);
+    assert.deepEqual(chunk, [1, 2]);
+    assert(chunk instanceof Uint8Array);
+
+    chunk = lib.takeInto(Uint8Array, iterator, 2);
+    assert.deepEqual(chunk, [3]);
+    assert(chunk instanceof Uint8Array);
+
+    chunk = lib.takeInto(Uint8Array, iterator, 2);
+    assert.deepEqual(chunk, []);
+    assert(chunk instanceof Uint8Array);
+  });
+});
+

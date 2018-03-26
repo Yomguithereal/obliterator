@@ -17,5 +17,6 @@ module.exports = {
   powerSet: require('./power-set.js'),
   range: require('./range.js'),
   split: require('./split.js'),
-  take: require('./take.js')
+  take: require('./take.js'),
+  takeInto: require('./take-into.js')
 };
