@@ -1,24 +1,33 @@
+/* eslint no-constant-condition: 0 */
 /**
  * Obliterator Consume Function
  * =============================
  *
- * Function consuming the given iterator into an array.
+ * Function consuming the given iterator for n or every steps.
  */
 
 /**
  * Consume.
  *
  * @param  {Iterator} iterator - Target iterator.
- * @param  {number}   [size]   - Optional size.
+ * @param  {number}   [steps]  - Optional steps.
  * @return {array}
  */
-module.exports = function consume(iterator, size) {
-  var array = arguments.length > 1 ? new Array(size) : [],
-      step,
+module.exports = function consume(iterator, steps) {
+  var step,
+      l = arguments.length > 1 ? steps : Infinity,
       i = 0;
 
-  while ((step = iterator.next(), !step.done))
-    array[i++] = step.value;
+  while (true) {
 
-  return array;
+    if (i === l)
+      return;
+
+    step = iterator.next();
+
+    if (step.done)
+      return;
+
+    i++;
+  }
 };

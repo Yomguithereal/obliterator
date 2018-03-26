@@ -30,6 +30,7 @@ npm install --save obliterator
 * [permutations](#permutations)
 * [powerSet](#powerSet)
 * [split](#split)
+* [take](#take)
 
 ## Iterator
 
@@ -98,7 +99,7 @@ iterator.next().value;
 
 ## consume
 
-Function consuming the given iterator and returning its values in an array.
+Function consuming the given iterator fully or for n steps.
 
 ```js
 import consume from 'obliterator/consume';
@@ -107,8 +108,17 @@ import {consume} from 'obliterator';
 
 const set = new Set([1, 2, 3]);
 
-consume(set.values());
->>> [1, 2, 3]
+// Consuming the whole iterator
+let iterator = set.values();
+consume(iterator);
+iterator.next().done
+>>> true
+
+// Consuming n steps
+let iterator = set.values();
+consume(iterator, 2);
+iterator.next().value
+>>> 3
 ```
 
 ## filter
@@ -244,6 +254,26 @@ iterator.next().value;
 >>> 'hello'
 iterator.next().value;
 >>> 'world'
+```
+
+## take
+
+Function taking values from given iterator and returning them in an array.
+
+```js
+import take from 'obliterator/take';
+// Or
+import {take} from 'obliterator';
+
+const set = new Set([1, 2, 3]);
+
+// To take n values from the iterator
+take(set.values(), 2);
+>>> [1, 2]
+
+// To convert the full iterator into an array
+take(set.values());
+>>> [1, 2, 3]
 ```
 
 # Contribution

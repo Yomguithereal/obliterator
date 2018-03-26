@@ -44,7 +44,7 @@ describe('Iterator', function() {
     it('should be variadic.', function() {
       var iterator = Iterator.of(1, 2, 3);
 
-      assert.deepEqual(lib.consume(iterator), [1, 2, 3]);
+      assert.deepEqual(lib.take(iterator), [1, 2, 3]);
     });
   });
 });
@@ -57,7 +57,7 @@ describe('#.chain', function() {
 
     var iterator = lib.chain(set1.values(), set2.values());
 
-    assert.deepEqual(lib.consume(iterator), [1, 2, 3, 3, 4, 5]);
+    assert.deepEqual(lib.take(iterator), [1, 2, 3, 3, 4, 5]);
   });
 });
 
@@ -109,8 +109,20 @@ describe('#.consume', function() {
 
   it('should properly consume the given iterator.', function() {
     var set = new Set([1, 2, 3]);
+    var iterator = set.values();
 
-    assert.deepEqual(lib.consume(set.values()), [1, 2, 3]);
+    lib.consume(iterator);
+
+    assert.strictEqual(iterator.next().done, true);
+  });
+
+  it('should be able to consume n elements', function() {
+    var set = new Set([1, 2, 3]);
+    var iterator = set.values();
+
+    lib.consume(iterator, 2);
+
+    assert.deepEqual(lib.take(iterator), [3]);
   });
 });
 
@@ -125,7 +137,7 @@ describe('#.filter', function() {
 
     var iterator = lib.filter(even, set.values());
 
-    assert.deepEqual(lib.consume(iterator), [2, 4]);
+    assert.deepEqual(lib.take(iterator), [2, 4]);
   });
 });
 
@@ -161,7 +173,7 @@ describe('#.map', function() {
 
     var iterator = lib.map(inc, set.values());
 
-    assert.deepEqual(lib.consume(iterator), [2, 3, 4, 5, 6]);
+    assert.deepEqual(lib.take(iterator), [2, 3, 4, 5, 6]);
   });
 });
 
@@ -184,13 +196,13 @@ describe('#.match', function() {
 
     var iterator = lib.match(/t/, 'test');
 
-    var result = lib.consume(iterator).map(index);
+    var result = lib.take(iterator).map(index);
 
     assert.deepEqual(result, [0]);
 
     iterator = lib.match(/t/g, 'test');
 
-    result = lib.consume(iterator).map(index);
+    result = lib.take(iterator).map(index);
 
     assert.deepEqual(result, [0, 3]);
   });
@@ -273,29 +285,29 @@ describe('#.range', function() {
   it('should return the correct range.', function() {
 
     assert.deepEqual(
-      lib.consume(lib.range(4)),
+      lib.take(lib.range(4)),
       [0, 1, 2, 3]
     );
 
     assert.deepEqual(
-      lib.consume(lib.range(1, 5)),
+      lib.take(lib.range(1, 5)),
       [1, 2, 3, 4]
     );
 
     assert.deepEqual(
-      lib.consume(lib.range(0, 20, 5)),
+      lib.take(lib.range(0, 20, 5)),
       [0, 5, 10, 15]
     );
 
     // TODO: handle 0 step
     // TODO: handle negatives
     // assert.deepEqual(
-    //   lib.consume(lib.range(1, 4, 0)),
+    //   lib.take(lib.range(1, 4, 0)),
     //   [0, 1, 1, 1]
     // );
 
     assert.deepEqual(
-      lib.consume(lib.range(0)),
+      lib.take(lib.range(0)),
       []
     );
   });
@@ -316,14 +328,43 @@ describe('#.split', function() {
   it('should correctly iterate over the splits.', function() {
     var iterator = lib.split(/t/, 'hellotworldtsuper');
 
-    var results = lib.consume(iterator);
+    var results = lib.take(iterator);
 
     assert.deepEqual(results, ['hello', 'world', 'super']);
 
     iterator = lib.split(/\|/g, '|hello|world|');
 
-    results = lib.consume(iterator);
+    results = lib.take(iterator);
 
     assert.deepEqual(results, ['', 'hello', 'world', '']);
+  });
+});
+
+describe('#.take', function() {
+
+  it('should properly take the given iterator.', function() {
+    var set = new Set([1, 2, 3]);
+
+    assert.deepEqual(lib.take(set.values()), [1, 2, 3]);
+  });
+
+  it('should be able to return n elements', function() {
+    var set = new Set([1, 2, 3]);
+
+    assert.deepEqual(lib.take(set.values(), 2), [1, 2]);
+  });
+
+  it('should slice end arrays.', function() {
+    var set = new Set([1, 2, 3]);
+    var iterator = set.values();
+
+    var chunk = lib.take(iterator, 2);
+    assert.deepEqual(chunk, [1, 2]);
+
+    chunk = lib.take(iterator, 2);
+    assert.deepEqual(chunk, [3]);
+
+    chunk = lib.take(iterator, 2);
+    assert.deepEqual(chunk, []);
   });
 });
