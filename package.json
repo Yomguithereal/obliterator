@@ -32,6 +32,8 @@
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config",
     "globals": {
+      "ArrayBuffer": true,
+      "Map": true,
       "Set": true,
       "Symbol": true,
       "Uint8Array": true,

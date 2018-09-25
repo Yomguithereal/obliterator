@@ -144,7 +144,9 @@ iterator.next().value
 
 ## forEach
 
-Helper function that can be used to iterate easily over the given iterator.
+Function able to iterate over almost any JavaScript iterable value using a callback.
+
+Supported values range from arrays, typed arrays, sets, maps, objects, strings, arguments, iterators, arbitrary iterables etc.
 
 ```js
 import forEach from 'obliterator/foreach';
@@ -156,6 +158,12 @@ const set = new Set(['apple', 'banana']);
 forEach(set.values(), (value, i) => {
   console.log(i, value);
 });
+
+// Iterating over a string
+forEach('abc', (char, i) => ...);
+
+// Iterating over a map
+forEach(map, (value, key) => ...);
 ```
 
 ## map
