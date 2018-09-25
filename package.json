@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/yomguithereal/obliterator#readme",
   "devDependencies": {
-    "@yomguithereal/eslint-config": "^3.0.0",
+    "@yomguithereal/eslint-config": "^4.0.0",
     "eslint": "^3.19.0",
-    "mocha": "^3.3.0"
+    "mocha": "^5.2.0"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config",
