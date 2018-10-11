@@ -166,6 +166,20 @@ forEach('abc', (char, i) => ...);
 forEach(map, (value, key) => ...);
 ```
 
+Optionally, one can use the `forEachWithNullKeys` to iterate over mixed values but with the twist that if the iterable does not have keys (lists, sets etc.), it will yield `null` instead of an index.
+
+```js
+import {forEachWithNullKeys} from 'obliterator/foreach';
+
+const set = new Set(['apple', 'banana']);
+
+forEach(set, (value, key) => {
+  console.log(key, value);
+});
+>>> null, 'apple'
+>>> null, 'banana'
+```
+
 ## map
 
 Function returning an iterator mapping another one's values using the given function.

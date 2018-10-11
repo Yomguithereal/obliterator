@@ -141,6 +141,161 @@ describe('#.filter', function() {
   });
 });
 
+describe('#.forEachWithNullKeys', function() {
+  var forEach = lib.forEach.forEachWithNullKeys;
+
+  it('should throw when given arguments are invalid.', function() {
+    assert.throws(function() {
+      forEach(null, 3);
+    }, /iterable/);
+
+    assert.throws(function() {
+      forEach(Iterator.of(4), 'test');
+    }, /callback/);
+  });
+
+  it('should correctly iterate over the given iterator.', function() {
+    var set = new Set([1, 2, 3]);
+
+    var c = 0;
+
+    forEach(set.values(), function(value, i) {
+      assert.strictEqual(value, c + 1);
+      assert.strictEqual(i, null);
+      c++;
+    });
+
+    assert.strictEqual(c, 3);
+  });
+
+  it('should properly iterate over an array.', function() {
+    var array = [1, 2, 3],
+        i = 0;
+
+    forEach(array, function(value, key) {
+      assert.strictEqual(key, null);
+      assert.strictEqual(value, i + 1);
+      i++;
+    });
+
+    assert.strictEqual(i, 3);
+  });
+
+  it('should properly iterate over an arguments object.', function() {
+    var i = 0;
+
+    function test() {
+      forEach(arguments, function(value, key) {
+        assert.strictEqual(key, null);
+        assert.strictEqual(value, i + 1);
+        i++;
+      });
+    }
+
+    test(1, 2, 3);
+
+    assert.strictEqual(i, 3);
+  });
+
+  it('should properly iterate over a string.', function() {
+    var string = 'abc',
+        map = ['a', 'b', 'c'],
+        i = 0;
+
+    forEach(string, function(value, key) {
+      assert.strictEqual(key, null);
+      assert.strictEqual(value, map[i]);
+      i++;
+    });
+
+    assert.strictEqual(i, 3);
+  });
+
+  it('should properly iterate over an object.', function() {
+    var object = Object.create({four: 5});
+    object.one = 1;
+    object.two = 2;
+    object.three = 3;
+
+    var keys = Object.keys(object),
+        i = 1;
+
+    forEach(object, function(value, key) {
+      assert.strictEqual(value, i);
+      assert.strictEqual(key, keys[i - 1]);
+      i++;
+    });
+
+    assert.strictEqual(i - 1, 3);
+  });
+
+  it('should properly iterate over a set.', function() {
+    var set = new Set([1, 2, 3]),
+        i = 0;
+
+    forEach(set, function(value, key) {
+      assert.strictEqual(value, ++i);
+      assert.strictEqual(key, null);
+    });
+
+    assert.strictEqual(i, 3);
+  });
+
+  it('should properly iterate over a map.', function() {
+    var map = new Map([['one', 1], ['two', 2], ['three', 3]]),
+        values = [1, 2, 3],
+        keys = ['one', 'two', 'three'],
+        i = 0;
+
+    forEach(map, function(value, key) {
+      assert.strictEqual(value, values[i]);
+      assert.strictEqual(key, keys[i]);
+      i++;
+    });
+
+    assert.strictEqual(i, 3);
+  });
+
+  it('should properly iterate over an arbitrary iterator.', function() {
+    var map = new Map([['one', 1], ['two', 2], ['three', 3]]),
+        i = 0;
+
+    forEach(map.values(), function(value, key) {
+      assert.strictEqual(value, i + 1);
+      assert.strictEqual(key, null);
+      i++;
+    });
+
+    assert.strictEqual(i, 3);
+  });
+
+  it('should properly iterate over an arbitrary iterable.', function() {
+    function Iterable() {}
+
+    Iterable.prototype[Symbol.iterator] = function() {
+      var i = 0;
+
+      return {
+        next: function() {
+          if (i < 3)
+            return {value: ++i};
+          return {done: true};
+        }
+      };
+    };
+
+    var j = 0;
+
+    forEach(new Iterable(), function(value, key) {
+      assert.strictEqual(value, j + 1);
+      assert.strictEqual(key, null);
+      j++;
+    });
+
+    assert.strictEqual(j, 3);
+  });
+});
+
 describe('#.forEach', function() {
 
   it('should throw when given arguments are invalid.', function() {
