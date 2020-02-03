@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint *.js",
     "prepublish": "npm run lint && npm test",
-    "test": "mocha test.js"
+    "test": "mocha test.js && npm run test:types",
+    "test:types": "tsc --lib es2015,dom --noEmit --noImplicitAny --noImplicitReturns ./test-types.ts"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
     "eslint": "^6.8.0",
-    "mocha": "^7.0.0"
+    "mocha": "^7.0.0",
+    "typescript": "^3.7.5"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config",
