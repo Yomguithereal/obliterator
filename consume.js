@@ -11,7 +11,6 @@
  *
  * @param  {Iterator} iterator - Target iterator.
  * @param  {number}   [steps]  - Optional steps.
- * @return {array}
  */
 module.exports = function consume(iterator, steps) {
   var step,
