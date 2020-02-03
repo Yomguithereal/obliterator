@@ -2,13 +2,15 @@
 
 # Obliterator
 
-Obliterator is a dead simple JavaScript library providing miscellaneous higher-order iterator functions such as combining two or more iterators into a single one.
+Obliterator is a dead simple JavaScript/TypeScript library providing miscellaneous higher-order iterator functions such as combining two or more iterators into a single one.
 
 # Installation
 
 ```
 npm install --save obliterator
 ```
+
+Note `obliterator` comes along with its TypeScript declarations.
 
 # Usage
 
