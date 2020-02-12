@@ -1,6 +1,6 @@
 {
   "name": "obliterator",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Higher order iterator library for JavaScript.",
   "main": "index.js",
   "scripts": {
