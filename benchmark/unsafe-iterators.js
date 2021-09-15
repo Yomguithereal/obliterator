@@ -1,3 +1,5 @@
+var Obliterator = require('../iterator.js');
+
 var SIZE = 500000000;
 
 var i = 0;
@@ -27,6 +29,15 @@ var unsafeIterator = {
   }
 };
 
+var k = 0;
+
+var obliterator = new Obliterator(function() {
+  if (k >= SIZE)
+    return {done: true};
+
+  return {done: false, value: k++};
+});
+
 var s, o;
 
 console.time('Iterator');
@@ -38,3 +49,9 @@ console.time('Unsafe Iterator');
 while ((s = unsafeIterator.next(), !s.done))
   o = s.value;
 console.timeEnd('Unsafe Iterator');
+
+
+console.time('Obliterator');
+while ((s = obliterator.next(), !s.done))
+  o = s.value;
+console.timeEnd('Obliterator');
