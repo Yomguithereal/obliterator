@@ -38,7 +38,14 @@ var obliterator = new Obliterator(function() {
   return {done: false, value: k++};
 });
 
-var s, o;
+function* generator() {
+  var l = 0;
+
+  while (l < SIZE)
+    yield l++;
+}
+
+var s, o, t;
 
 console.time('Iterator');
 while ((s = iterator.next(), !s.done))
@@ -50,8 +57,19 @@ while ((s = unsafeIterator.next(), !s.done))
   o = s.value;
 console.timeEnd('Unsafe Iterator');
 
-
 console.time('Obliterator');
 while ((s = obliterator.next(), !s.done))
   o = s.value;
 console.timeEnd('Obliterator');
+
+console.time('Generator');
+var g = generator();
+while ((s = g.next(), !s.done))
+  o = s.value;
+console.timeEnd('Generator');
+
+console.time('Generator for...of');
+var g = generator();
+for (t of g)
+  o = t;
+console.timeEnd('Generator for...of');
