@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Yomguithereal/obliterator.svg)](https://travis-ci.org/Yomguithereal/obliterator)
+[![Build Status](https://github.com/Yomguithereal/obliterator/workflows/Tests/badge.svg)](https://github.com/Yomguithereal/obliterator/actions)
 
 # Obliterator
 
