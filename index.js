@@ -6,6 +6,7 @@
  */
 module.exports = {
   Iterator: require('./iterator.js'),
+  iter: require('./iter.js'),
   chain: require('./chain.js'),
   combinations: require('./combinations.js'),
   consume: require('./consume.js'),

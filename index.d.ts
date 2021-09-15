@@ -1,4 +1,5 @@
 export {default as Iterator} from './iterator';
+export {default as iter} from './iter';
 export {default as chain} from './chain';
 export {default as combinations} from './combinations';
 export {default as consume} from './consume';

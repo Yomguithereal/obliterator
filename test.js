@@ -49,6 +49,27 @@ describe('Iterator', function() {
   });
 });
 
+describe('#.iter', function() {
+  it('should properly coerce targets to iterators or throw.', function() {
+    var tests = [
+      [null, false],
+      [new Set([0, 1, 2]), true],
+      [(new Set([0, 1, 2])).values(), true]
+    ];
+
+    tests.forEach(function(test) {
+      if (test[1]) {
+        assert.strictEqual(Iterator.is(lib.iter(test[0])), true);
+      }
+      else {
+        assert.throws(function() {
+          lib.iter(test[0]);
+        }, /not/);
+      }
+    });
+  });
+});
+
 describe('#.chain', function() {
 
   it('should properly chain the given iterators.', function() {
@@ -58,6 +79,15 @@ describe('#.chain', function() {
     var iterator = lib.chain(set1.values(), set2.values());
 
     assert.deepEqual(lib.take(iterator), [1, 2, 3, 3, 4, 5]);
+  });
+
+  it.skip('should also work with iterables.', function() {
+    var set1 = new Set([1, 2, 3]),
+        set2 = new Set([3, 4, 5]);
+
+    var iterator = lib.chain(set1, set2.values(), set2);
+
+    assert.deepEqual(lib.take(iterator), [1, 2, 3, 3, 4, 5, 1, 2, 3]);
   });
 });
 
