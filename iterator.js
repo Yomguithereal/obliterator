@@ -82,6 +82,23 @@ Iterator.empty = function() {
 };
 
 /**
+ * Returning an iterator over the given indexed sequence.
+ *
+ * @param  {string|Array} sequence - Target sequence.
+ * @return {Iterator}
+ */
+Iterator.fromSequence = function(sequence) {
+  var i = 0, l = sequence.length;
+
+  return new Iterator(function() {
+    if (i >= l)
+      return {done: true};
+
+    return {done: false, value: sequence[i++]};
+  });
+};
+
+/**
  * Returning whether the given value is an iterator.
  *
  * @param  {any} value - Value.

@@ -47,6 +47,21 @@ describe('Iterator', function() {
       assert.deepEqual(lib.take(iterator), [1, 2, 3]);
     });
   });
+
+  describe('Iterator.fromSequence', function() {
+
+    it('should work with strings.', function() {
+      var iterator = Iterator.fromSequence('hello');
+
+      assert.deepStrictEqual(lib.take(iterator), ['h', 'e', 'l', 'l', 'o']);
+    });
+
+    it('should work with arrays.', function() {
+      var iterator = Iterator.fromSequence([3, 4, 5]);
+
+      assert.deepStrictEqual(lib.take(iterator), [3, 4, 5]);
+    });
+  });
 });
 
 describe('#.iter', function() {
