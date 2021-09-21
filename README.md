@@ -36,7 +36,7 @@ Note `obliterator` comes along with its TypeScript declarations.
 
 ## Iterator
 
-A handy Iterator class with safeguards and usable with ES2015's `for ... of` loop constructs & spread operator.
+A handy Iterator class easily usable with ES2015's `for ... of` loop constructs & spread operator.
 
 ```js
 import Iterator from 'obliterator/iterator';
@@ -45,6 +45,7 @@ import {Iterator} from 'obliterator';
 
 const iterator = new Iterator(function() {
   // Define what the `next` function does
+  return {done: false, value: 34};
 });
 
 // Checking that the given value is an iterator (native or else)

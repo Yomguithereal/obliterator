@@ -12,35 +12,11 @@
  * @param {function} next - Next function.
  */
 function Iterator(next) {
+  if (typeof next !== 'function')
+    throw new Error('obliterator/iterator: expecting a function!');
 
-  // Hiding the given function
-  Object.defineProperty(this, '_next', {
-    writable: false,
-    enumerable: false,
-    value: next
-  });
-
-  // Is the iterator complete?
-  this.done = false;
+  this.next = next;
 }
-
-/**
- * Next function.
- *
- * @return {object}
- */
-// NOTE: maybe this should dropped for performance?
-Iterator.prototype.next = function() {
-  if (this.done)
-    return {done: true};
-
-  var step = this._next();
-
-  if (step.done)
-    this.done = true;
-
-  return step;
-};
 
 /**
  * If symbols are supported, we add `next` to `Symbol.iterator`.
@@ -75,8 +51,9 @@ Iterator.of = function() {
  * @return {Iterator}
  */
 Iterator.empty = function() {
-  var iterator = new Iterator(null);
-  iterator.done = true;
+  var iterator = new Iterator(function() {
+    return {done: true};
+  });
 
   return iterator;
 };

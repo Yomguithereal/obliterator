@@ -16,7 +16,9 @@ describe('Iterator', function() {
 
       assert.strictEqual(Iterator.is(null), false);
       assert.strictEqual(Iterator.is([1, 2, 3]), false);
-      assert.strictEqual(Iterator.is(new Iterator()), true);
+      assert.strictEqual(Iterator.is(new Iterator(function() {
+        return {done: true};
+      })), true);
       assert.strictEqual(Iterator.is((new Set()).values()), true);
     });
   });
