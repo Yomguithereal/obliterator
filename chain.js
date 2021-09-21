@@ -2,18 +2,19 @@
  * Obliterator Chain Function
  * ===========================
  *
- * Variadic function combining the given iterators.
+ * Variadic function combining the given iterables.
  */
-var Iterator = require('./iterator.js');
+var Iterator = require('./iterator.js'),
+    iter = require('./iter.js');
 
 /**
  * Chain.
  *
- * @param  {...Iterator} iterators - Target iterators.
+ * @param  {...Iterator} iterables - Target iterables.
  * @return {Iterator}
  */
 module.exports = function chain() {
-  var iterators = arguments,
+  var iterables = arguments,
       current,
       i = -1;
 
@@ -21,10 +22,10 @@ module.exports = function chain() {
     if (!current) {
       i++;
 
-      if (i >= iterators.length)
+      if (i >= iterables.length)
         return {done: true};
 
-      current = iterators[i];
+      current = iter(iterables[i]);
     }
 
     var step = current.next();

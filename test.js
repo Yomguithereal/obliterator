@@ -102,11 +102,11 @@ describe('#.chain', function() {
     assert.deepEqual(lib.take(iterator), [1, 2, 3, 3, 4, 5]);
   });
 
-  it.skip('should also work with iterables.', function() {
+  it('should also work with iterables.', function() {
     var set1 = new Set([1, 2, 3]),
         set2 = new Set([3, 4, 5]);
 
-    var iterator = lib.chain(set1, set2.values(), set2);
+    var iterator = lib.chain(set1, set2.values(), set1);
 
     assert.deepEqual(lib.take(iterator), [1, 2, 3, 3, 4, 5, 1, 2, 3]);
   });

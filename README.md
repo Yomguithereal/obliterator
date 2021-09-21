@@ -63,7 +63,7 @@ const multipleIterator = Iterator.of(1, 2, 3);
 
 ## chain
 
-Variadic function chaining all the given iterators.
+Variadic function chaining all the given iterables.
 
 ```js
 import chain from 'obliterator/chain';
@@ -73,7 +73,7 @@ import {chain} from 'obliterator';
 const set1 = new Set('a');
 const set2 = new Set('bc');
 
-const chained = chain(set1.values(), set2.values());
+const chained = chain(set1.values(), set2);
 
 chained.next();
 >>> {done: false, value: 'a'}
