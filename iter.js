@@ -5,7 +5,17 @@
  * Function coercing values to an iterator. It can be quite useful when needing
  * to handle iterables and iterators the same way.
  */
+var Iterator = require('./iterator.js');
+
 function iterOrNull(target) {
+
+  // Indexed sequence
+  if (
+    typeof target === 'string' ||
+    Array.isArray(target) ||
+    (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView(target))
+  )
+    return Iterator.fromSequence(target);
 
   // Invalid value
   if (typeof target !== 'object' || target === null)

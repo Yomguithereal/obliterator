@@ -69,7 +69,11 @@ describe('#.iter', function() {
     var tests = [
       [null, false],
       [new Set([0, 1, 2]), true],
-      [(new Set([0, 1, 2])).values(), true]
+      [(new Set([0, 1, 2])).values(), true],
+      ['test', true],
+      [{hello: 'world'}, false],
+      [[3, 4, 5], true],
+      [new Uint16Array([4, 5, 6]), true]
     ];
 
     tests.forEach(function(test) {
