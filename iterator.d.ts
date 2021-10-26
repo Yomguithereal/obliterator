@@ -5,9 +5,6 @@ export default class Iterator<V> implements IterableIterator<V> {
   // Constructor
   constructor(next: NextFunction<V>);
 
-  // Members
-  done: boolean;
-
   // Well-known methods
   next(): IteratorResult<V>;
   [Symbol.iterator](): IterableIterator<V>;
