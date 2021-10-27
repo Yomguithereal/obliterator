@@ -18,23 +18,24 @@ Note `obliterator` comes along with its TypeScript declarations.
 
 ## Summary
 
-*Classes*
+_Classes_
 
-* [Iterator](#iterator)
+- [Iterator](#iterator)
 
-*Functions*
+_Functions_
 
-* [chain](#chain)
-* [combinations](#combinations)
-* [consume](#consume)
-* [filter](#filter)
-* [forEach](#foreach)
-* [map](#map)
-* [match](#match)
-* [permutations](#permutations)
-* [powerSet](#powerSet)
-* [split](#split)
-* [take](#take)
+- [chain](#chain)
+- [combinations](#combinations)
+- [consume](#consume)
+- [filter](#filter)
+- [forEach](#foreach)
+- [iter](#iter)
+- [map](#map)
+- [match](#match)
+- [permutations](#permutations)
+- [powerSet](#powerSet)
+- [split](#split)
+- [take](#take)
 
 ## Iterator
 
@@ -45,7 +46,7 @@ import Iterator from 'obliterator/iterator';
 // Or
 import {Iterator} from 'obliterator';
 
-const iterator = new Iterator(function() {
+const iterator = new Iterator(function () {
   // Define what the `next` function does
   return {done: false, value: 34};
 });
@@ -116,14 +117,12 @@ const set = new Set([1, 2, 3]);
 // Consuming the whole iterator
 let iterator = set.values();
 consume(iterator);
-iterator.next().done
->>> true
+iterator.next().done >>> true;
 
 // Consuming n steps
 let iterator = set.values();
 consume(iterator, 2);
-iterator.next().value
->>> 3
+iterator.next().value >>> 3;
 ```
 
 ## filter
@@ -141,10 +140,8 @@ const even = x => x % 2 === 0;
 
 const iterator = filter(even, set.values());
 
-iterator.next().value
->>> 2
-iterator.next().value
->>> 4
+iterator.next().value >>> 2;
+iterator.next().value >>> 4;
 ```
 
 ## forEach
@@ -185,6 +182,20 @@ forEach(set, (value, key) => {
 >>> null, 'banana'
 ```
 
+## iter
+
+Function casting any iterable-like value to a proper iterator. Will throw an error if the given value cannot be cast as an iterator.
+
+```js
+import iter from 'obliterator/iter';
+
+iter('test');
+iter(new Set([1, 2, 3]));
+
+// This will throw:
+iter(null);
+```
+
 ## map
 
 Function returning an iterator mapping another one's values using the given function.
@@ -200,10 +211,8 @@ const triple = x => x * 3;
 
 const iterator = map(triple, set.values());
 
-iterator.next().value
->>> 3
-iterator.next().value
->>> 6
+iterator.next().value >>> 3;
+iterator.next().value >>> 6;
 ```
 
 ## match
@@ -217,10 +226,8 @@ import {match} from 'obliterator';
 
 const iterator = match(/t/, 'test');
 
-iterator.next().value.index
->>> 0
-iterator.next().value.index
->>> 3
+iterator.next().value.index >>> 0;
+iterator.next().value.index >>> 3;
 ```
 
 ## permutations
