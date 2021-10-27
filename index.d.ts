@@ -3,6 +3,7 @@ export {default as iter} from './iter';
 export {default as chain} from './chain';
 export {default as combinations} from './combinations';
 export {default as consume} from './consume';
+export {default as every} from './every';
 export {default as filter} from './filter';
 export {default as forEach} from './foreach';
 export {default as forEachWithNullKeys} from './foreach-with-null-keys';

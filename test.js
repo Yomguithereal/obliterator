@@ -802,3 +802,28 @@ describe('#.includes', function () {
     assert.strictEqual(lib.includes(set.values(), '2'), false);
   });
 });
+
+describe('#.every', function () {
+  it('should properly return whether all items match the predicate.', function () {
+    assert.strictEqual(
+      lib.every([1, 1, 1], function (n) {
+        return n === 1;
+      }),
+      true
+    );
+
+    assert.strictEqual(
+      lib.every([1, 2, 1], function (n) {
+        return n === 1;
+      }),
+      false
+    );
+
+    assert.strictEqual(
+      lib.every([1, 1, 3], function (n) {
+        return n === 1;
+      }),
+      false
+    );
+  });
+});

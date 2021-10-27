@@ -27,6 +27,7 @@ _Functions_
 - [chain](#chain)
 - [combinations](#combinations)
 - [consume](#consume)
+- [every](#every)
 - [filter](#filter)
 - [forEach](#foreach)
 - [forEachWithNullKeys](#foreachwithnullkeys)
@@ -128,9 +129,25 @@ consume(iterator, 2);
 iterator.next().value >>> 3;
 ```
 
+## every
+
+Function returning whether all items of an iterable-like match the given predicate function.
+
+```js
+import every from 'obliterator/every';
+// Or
+import {every} from 'obliterator';
+
+every([2, 4, 6], n => n % 2 === 0);
+>>> true
+
+every([1, 2, 3], n => n % 2 === 0);
+>>> false
+```
+
 ## filter
 
-Function returning an iterator filtering another one's values using the given predicate.
+Function returning an iterator filtering another one's values using the given predicate function.
 
 ```js
 import filter from 'obliterator/filter';
@@ -300,7 +317,7 @@ iterator.next().value;
 
 ## some
 
-Returns whether the given iterable-like has some item matching the given predicate.
+Returns whether the given iterable-like has some item matching the given predicate function.
 
 ```js
 import some from 'obliterator/some';
