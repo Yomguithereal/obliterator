@@ -727,6 +727,12 @@ describe('#.take', function() {
     chunk = lib.take(iterator, 2);
     assert.deepEqual(chunk, []);
   });
+
+  it('should work with arbitrary iterables.', function() {
+    var set = new Set([1, 2, 3]);
+
+    assert.deepEqual(lib.take(set), [1, 2, 3]);
+  });
 });
 
 describe('#.takeInto', function() {
