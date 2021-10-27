@@ -6,13 +6,17 @@
  * to handle iterables and iterators the same way.
  */
 var Iterator = require('./iterator.js');
+var support = require('./support.js');
+
+var ARRAY_BUFFER_SUPPORT = support.ARRAY_BUFFER_SUPPORT;
+var SYMBOL_SUPPORT = support.SYMBOL_SUPPORT;
 
 function iterOrNull(target) {
   // Indexed sequence
   if (
     typeof target === 'string' ||
     Array.isArray(target) ||
-    (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView(target))
+    (ARRAY_BUFFER_SUPPORT && ArrayBuffer.isView(target))
   )
     return Iterator.fromSequence(target);
 
@@ -20,10 +24,7 @@ function iterOrNull(target) {
   if (typeof target !== 'object' || target === null) return null;
 
   // Iterable
-  if (
-    typeof Symbol !== 'undefined' &&
-    typeof target[Symbol.iterator] === 'function'
-  )
+  if (SYMBOL_SUPPORT && typeof target[Symbol.iterator] === 'function')
     return target[Symbol.iterator]();
 
   // Iterator duck-typing

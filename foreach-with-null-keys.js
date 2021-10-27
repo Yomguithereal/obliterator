@@ -1,6 +1,6 @@
 /**
- * Obliterator ForEach Function
- * =============================
+ * Obliterator ForEachWithNullKeys Function
+ * =========================================
  *
  * Helper function used to easily iterate over mixed values.
  */
@@ -10,18 +10,20 @@ var ARRAY_BUFFER_SUPPORT = support.ARRAY_BUFFER_SUPPORT;
 var SYMBOL_SUPPORT = support.SYMBOL_SUPPORT;
 
 /**
- * Function able to iterate over almost any iterable JS value.
+ * Same function as the `forEach` but will yield `null` when the target
+ * does not have keys.
  *
  * @param  {any}      iterable - Iterable value.
  * @param  {function} callback - Callback function.
  */
-module.exports = function forEach(iterable, callback) {
+module.exports = function forEachWithNullKeys(iterable, callback) {
   var iterator, k, i, l, s;
 
-  if (!iterable) throw new Error('obliterator/forEach: invalid iterable.');
+  if (!iterable)
+    throw new Error('obliterator/forEachWithNullKeys: invalid iterable.');
 
   if (typeof callback !== 'function')
-    throw new Error('obliterator/forEach: expecting a callback.');
+    throw new Error('obliterator/forEachWithNullKeys: expecting a callback.');
 
   // The target is an array or a string or function arguments
   if (
@@ -30,7 +32,15 @@ module.exports = function forEach(iterable, callback) {
     typeof iterable === 'string' ||
     iterable.toString() === '[object Arguments]'
   ) {
-    for (i = 0, l = iterable.length; i < l; i++) callback(iterable[i], i);
+    for (i = 0, l = iterable.length; i < l; i++) callback(iterable[i], null);
+    return;
+  }
+
+  // The target is a Set
+  if (iterable instanceof Set) {
+    iterable.forEach(function (value) {
+      callback(value, null);
+    });
     return;
   }
 
@@ -55,7 +65,7 @@ module.exports = function forEach(iterable, callback) {
     i = 0;
 
     while (((s = iterator.next()), s.done !== true)) {
-      callback(s.value, i);
+      callback(s.value, null);
       i++;
     }
 

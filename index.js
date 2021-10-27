@@ -12,6 +12,7 @@ module.exports = {
   consume: require('./consume.js'),
   filter: require('./filter.js'),
   forEach: require('./foreach.js'),
+  forEachWithNullKeys: require('./foreach-with-null-keys.js'),
   map: require('./map.js'),
   match: require('./match.js'),
   permutations: require('./permutations.js'),

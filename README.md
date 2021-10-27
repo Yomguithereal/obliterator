@@ -29,6 +29,7 @@ _Functions_
 - [consume](#consume)
 - [filter](#filter)
 - [forEach](#foreach)
+- [forEachWithNullKeys](#foreachwithnullkeys)
 - [iter](#iter)
 - [map](#map)
 - [match](#match)
@@ -168,7 +169,11 @@ forEach('abc', (char, i) => ...);
 forEach(map, (value, key) => ...);
 ```
 
-Optionally, one can use the `forEachWithNullKeys` function to iterate over mixed values but with the twist that iterables without proper keys (lists, sets etc.), will yield `null` instead of an index key.
+## forEachWithNullKeys
+
+Variant of [forEach](#foreach) one can use to iterate over mixed values but with the twist that iterables without proper keys (lists, sets etc.), will yield `null` instead of an index key.
+
+Supported values range from arrays, typed arrays, sets, maps, objects, strings, arguments, iterators, arbitrary iterables etc.
 
 ```js
 import {forEachWithNullKeys} from 'obliterator/foreach';

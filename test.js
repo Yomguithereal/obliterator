@@ -4,8 +4,8 @@
  *
  * Unit test for the library's functions.
  */
-var assert = require('assert'),
-  lib = require('./');
+var assert = require('assert');
+var lib = require('./');
 
 var Iterator = lib.Iterator;
 
@@ -198,15 +198,13 @@ describe('#.filter', function () {
 });
 
 describe('#.forEachWithNullKeys', function () {
-  var forEach = lib.forEach.forEachWithNullKeys;
-
   it('should throw when given arguments are invalid.', function () {
     assert.throws(function () {
-      forEach(null, 3);
+      lib.forEachWithNullKeys(null, 3);
     }, /iterable/);
 
     assert.throws(function () {
-      forEach(Iterator.of(4), 'test');
+      lib.forEachWithNullKeys(Iterator.of(4), 'test');
     }, /callback/);
   });
 
@@ -215,7 +213,7 @@ describe('#.forEachWithNullKeys', function () {
 
     var c = 0;
 
-    forEach(set.values(), function (value, i) {
+    lib.forEachWithNullKeys(set.values(), function (value, i) {
       assert.strictEqual(value, c + 1);
       assert.strictEqual(i, null);
       c++;
@@ -228,7 +226,7 @@ describe('#.forEachWithNullKeys', function () {
     var array = [1, 2, 3],
       i = 0;
 
-    forEach(array, function (value, key) {
+    lib.forEachWithNullKeys(array, function (value, key) {
       assert.strictEqual(key, null);
       assert.strictEqual(value, i + 1);
       i++;
@@ -241,7 +239,7 @@ describe('#.forEachWithNullKeys', function () {
     var i = 0;
 
     function test() {
-      forEach(arguments, function (value, key) {
+      lib.forEachWithNullKeys(arguments, function (value, key) {
         assert.strictEqual(key, null);
         assert.strictEqual(value, i + 1);
         i++;
@@ -258,7 +256,7 @@ describe('#.forEachWithNullKeys', function () {
       map = ['a', 'b', 'c'],
       i = 0;
 
-    forEach(string, function (value, key) {
+    lib.forEachWithNullKeys(string, function (value, key) {
       assert.strictEqual(key, null);
       assert.strictEqual(value, map[i]);
       i++;
@@ -276,7 +274,7 @@ describe('#.forEachWithNullKeys', function () {
     var keys = Object.keys(object),
       i = 1;
 
-    forEach(object, function (value, key) {
+    lib.forEachWithNullKeys(object, function (value, key) {
       assert.strictEqual(value, i);
       assert.strictEqual(key, keys[i - 1]);
       i++;
@@ -289,7 +287,7 @@ describe('#.forEachWithNullKeys', function () {
     var set = new Set([1, 2, 3]),
       i = 0;
 
-    forEach(set, function (value, key) {
+    lib.forEachWithNullKeys(set, function (value, key) {
       assert.strictEqual(value, ++i);
       assert.strictEqual(key, null);
     });
@@ -307,7 +305,7 @@ describe('#.forEachWithNullKeys', function () {
       keys = ['one', 'two', 'three'],
       i = 0;
 
-    forEach(map, function (value, key) {
+    lib.forEachWithNullKeys(map, function (value, key) {
       assert.strictEqual(value, values[i]);
       assert.strictEqual(key, keys[i]);
       i++;
@@ -324,7 +322,7 @@ describe('#.forEachWithNullKeys', function () {
       ]),
       i = 0;
 
-    forEach(map.values(), function (value, key) {
+    lib.forEachWithNullKeys(map.values(), function (value, key) {
       assert.strictEqual(value, i + 1);
       assert.strictEqual(key, null);
       i++;
@@ -349,7 +347,7 @@ describe('#.forEachWithNullKeys', function () {
 
     var j = 0;
 
-    forEach(new Iterable(), function (value, key) {
+    lib.forEachWithNullKeys(new Iterable(), function (value, key) {
       assert.strictEqual(value, j + 1);
       assert.strictEqual(key, null);
       j++;
