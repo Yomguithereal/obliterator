@@ -827,3 +827,28 @@ describe('#.every', function () {
     );
   });
 });
+
+describe('#.find', function () {
+  it('should correctly return the next matched item or undefined.', function () {
+    assert.deepStrictEqual(
+      lib.find([{value: 1}, {value: 2}, {value: 3}], function (n) {
+        return n.value === 1;
+      }),
+      {value: 1}
+    );
+
+    assert.deepStrictEqual(
+      lib.find([{value: 1}, {value: 2}, {value: 3}], function (n) {
+        return n.value === 3;
+      }),
+      {value: 3}
+    );
+
+    assert.deepStrictEqual(
+      lib.find([{value: 1}, {value: 2}, {value: 3}], function (n) {
+        return n.value === 14;
+      }),
+      undefined
+    );
+  });
+});

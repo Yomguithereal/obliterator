@@ -11,6 +11,7 @@ exports.combinations = require('./combinations.js');
 exports.consume = require('./consume.js');
 exports.every = require('./every.js');
 exports.filter = require('./filter.js');
+exports.find = require('./find.js');
 exports.forEach = require('./foreach.js');
 exports.forEachWithNullKeys = require('./foreach-with-null-keys.js');
 exports.includes = require('./includes.js');

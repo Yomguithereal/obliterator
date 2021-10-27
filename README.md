@@ -29,6 +29,7 @@ _Functions_
 - [consume](#consume)
 - [every](#every)
 - [filter](#filter)
+- [find](#find)
 - [forEach](#foreach)
 - [forEachWithNullKeys](#foreachwithnullkeys)
 - [includes](#includes)
@@ -162,6 +163,31 @@ const iterator = filter(set.values(), even);
 
 iterator.next().value >>> 2;
 iterator.next().value >>> 4;
+```
+
+## find
+
+Function returning the next item matching given predicate function in an iterable-like.
+
+```js
+import find from 'obliterator/find';
+// Or
+import {find} from 'obliterator';
+
+const set = new Set([1, 2, 3, 4, 5]);
+
+const even = x => x % 2 === 0;
+
+const values = set.values();
+
+find(values, even);
+>>> 2
+
+find(values, even);
+>>> 4
+
+find(values, even);
+>>> undefined
 ```
 
 ## forEach
