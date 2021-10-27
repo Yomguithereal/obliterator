@@ -179,7 +179,7 @@ describe('#.filter', function () {
       return a % 2 === 0;
     };
 
-    var iterator = lib.filter(even, set.values());
+    var iterator = lib.filter(set.values(), even);
 
     assert.deepEqual(lib.take(iterator), [2, 4]);
   });
@@ -191,7 +191,7 @@ describe('#.filter', function () {
       return a % 2 === 0;
     };
 
-    var iterator = lib.filter(even, set);
+    var iterator = lib.filter(set, even);
 
     assert.deepEqual(lib.take(iterator), [2, 4]);
   });
@@ -524,7 +524,7 @@ describe('#.map', function () {
       return a + 1;
     };
 
-    var iterator = lib.map(inc, set.values());
+    var iterator = lib.map(set.values(), inc);
 
     assert.deepEqual(lib.take(iterator), [2, 3, 4, 5, 6]);
   });
@@ -534,7 +534,7 @@ describe('#.map', function () {
       return a + 't';
     };
 
-    var iterator = lib.map(concat, 'abc');
+    var iterator = lib.map('abc', concat);
 
     assert.deepEqual(lib.take(iterator), ['at', 'bt', 'ct']);
   });

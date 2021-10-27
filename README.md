@@ -139,7 +139,7 @@ const set = new Set([1, 2, 3, 4, 5]);
 
 const even = x => x % 2 === 0;
 
-const iterator = filter(even, set.values());
+const iterator = filter(set.values(), even);
 
 iterator.next().value >>> 2;
 iterator.next().value >>> 4;
@@ -214,7 +214,7 @@ const set = new Set([1, 2, 3, 4, 5]);
 
 const triple = x => x * 3;
 
-const iterator = map(triple, set.values());
+const iterator = map(set.values(), triple);
 
 iterator.next().value >>> 3;
 iterator.next().value >>> 6;

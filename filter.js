@@ -10,11 +10,11 @@ var iter = require('./iter.js');
 /**
  * Filter.
  *
+ * @param  {Iterable} target    - Target iterable.
  * @param  {function} predicate - Predicate function.
- * @param  {Iterable} target - Target iterable.
  * @return {Iterator}
  */
-module.exports = function filter(predicate, target) {
+module.exports = function filter(target, predicate) {
   var iterator = iter(target);
 
   return new Iterator(function next() {
