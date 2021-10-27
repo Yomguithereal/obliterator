@@ -14,18 +14,15 @@
  */
 module.exports = function consume(iterator, steps) {
   var step,
-      l = arguments.length > 1 ? steps : Infinity,
-      i = 0;
+    l = arguments.length > 1 ? steps : Infinity,
+    i = 0;
 
   while (true) {
-
-    if (i === l)
-      return;
+    if (i === l) return;
 
     step = iterator.next();
 
-    if (step.done)
-      return;
+    if (step.done) return;
 
     i++;
   }

@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint *.js",
     "prepublishOnly": "npm run lint && npm test",
+    "prettier": "prettier --write '*.js' '*.ts'",
     "test": "mocha test.js && npm run test:types",
     "test:types": "tsc --lib es2015,dom --noEmit --noImplicitAny --noImplicitReturns ./test-types.ts"
   },
@@ -26,21 +27,19 @@
   },
   "homepage": "https://github.com/yomguithereal/obliterator#readme",
   "devDependencies": {
-    "@yomguithereal/eslint-config": "^4.0.0",
-    "eslint": "^7.32.0",
-    "mocha": "^9.1.1",
-    "typescript": "^4.4.3"
+    "@yomguithereal/eslint-config": "^4.4.0",
+    "@yomguithereal/prettier-config": "^1.2.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "mocha": "^9.1.3",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
   },
   "eslintConfig": {
-    "extends": "@yomguithereal/eslint-config",
-    "globals": {
-      "ArrayBuffer": true,
-      "Map": true,
-      "Set": true,
-      "Symbol": true,
-      "Uint8Array": true,
-      "Uint16Array": true,
-      "Uint32Array": true
-    }
-  }
+    "extends": [
+      "@yomguithereal/eslint-config",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": "@yomguithereal/prettier-config"
 }

@@ -5,7 +5,7 @@
  * Variadic function combining the given iterables.
  */
 var Iterator = require('./iterator.js'),
-    iter = require('./iter.js');
+  iter = require('./iter.js');
 
 /**
  * Chain.
@@ -15,15 +15,14 @@ var Iterator = require('./iterator.js'),
  */
 module.exports = function chain() {
   var iterables = arguments,
-      current,
-      i = -1;
+    current,
+    i = -1;
 
   return new Iterator(function iterate() {
     if (!current) {
       i++;
 
-      if (i >= iterables.length)
-        return {done: true};
+      if (i >= iterables.length) return {done: true};
 
       current = iter(iterables[i]);
     }

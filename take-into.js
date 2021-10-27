@@ -18,22 +18,18 @@ var iter = require('./iter.js');
  */
 module.exports = function takeInto(ArrayClass, iterable, n) {
   var array = new ArrayClass(n),
-      step,
-      i = 0;
+    step,
+    i = 0;
 
   var iterator = iter(iterable);
 
   while (true) {
-
-    if (i === n)
-      return array;
+    if (i === n) return array;
 
     step = iterator.next();
 
     if (step.done) {
-
-      if (i !== n)
-        return array.slice(0, i);
+      if (i !== n) return array.slice(0, i);
 
       return array;
     }

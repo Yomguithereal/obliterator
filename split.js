@@ -32,7 +32,9 @@ function makeGlobal(pattern) {
  */
 module.exports = function split(pattern, string) {
   if (!(pattern instanceof RegExp))
-    throw new Error('obliterator/split: invalid pattern. Expecting a regular expression.');
+    throw new Error(
+      'obliterator/split: invalid pattern. Expecting a regular expression.'
+    );
 
   if (typeof string !== 'string')
     throw new Error('obliterator/split: invalid target. Expecting a string.');
@@ -42,23 +44,21 @@ module.exports = function split(pattern, string) {
   pattern = makeGlobal(pattern);
 
   var consumed = false,
-      current = 0;
+    current = 0;
 
-  return new Iterator(function() {
-    if (consumed)
-      return {done: true};
+  return new Iterator(function () {
+    if (consumed) return {done: true};
 
     var match = pattern.exec(string),
-        value,
-        length;
+      value,
+      length;
 
     if (match) {
       length = match.index + match[0].length;
 
       value = string.slice(current, match.index);
       current = length;
-    }
-    else {
+    } else {
       consumed = true;
       value = string.slice(current);
     }

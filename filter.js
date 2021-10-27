@@ -20,11 +20,9 @@ module.exports = function filter(predicate, target) {
   return new Iterator(function next() {
     var step = iterator.next();
 
-    if (step.done)
-      return step;
+    if (step.done) return step;
 
-    if (!predicate(step.value))
-      return next();
+    if (!predicate(step.value)) return next();
 
     return step;
   });

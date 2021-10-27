@@ -9,7 +9,7 @@
  * Constants.
  */
 var ARRAY_BUFFER_SUPPORT = typeof ArrayBuffer !== 'undefined',
-    SYMBOL_SUPPORT = typeof Symbol !== 'undefined';
+  SYMBOL_SUPPORT = typeof Symbol !== 'undefined';
 
 /**
  * Function able to iterate over almost any iterable JS value.
@@ -20,8 +20,7 @@ var ARRAY_BUFFER_SUPPORT = typeof ArrayBuffer !== 'undefined',
 function forEach(iterable, callback) {
   var iterator, k, i, l, s;
 
-  if (!iterable)
-    throw new Error('obliterator/forEach: invalid iterable.');
+  if (!iterable) throw new Error('obliterator/forEach: invalid iterable.');
 
   if (typeof callback !== 'function')
     throw new Error('obliterator/forEach: expecting a callback.');
@@ -33,8 +32,7 @@ function forEach(iterable, callback) {
     typeof iterable === 'string' ||
     iterable.toString() === '[object Arguments]'
   ) {
-    for (i = 0, l = iterable.length; i < l; i++)
-      callback(iterable[i], i);
+    for (i = 0, l = iterable.length; i < l; i++) callback(iterable[i], i);
     return;
   }
 
@@ -58,7 +56,7 @@ function forEach(iterable, callback) {
     iterator = iterable;
     i = 0;
 
-    while ((s = iterator.next(), s.done !== true)) {
+    while (((s = iterator.next()), s.done !== true)) {
       callback(s.value, i);
       i++;
     }
@@ -83,7 +81,7 @@ function forEach(iterable, callback) {
  * @param  {any}      iterable - Iterable value.
  * @param  {function} callback - Callback function.
  */
-forEach.forEachWithNullKeys = function(iterable, callback) {
+forEach.forEachWithNullKeys = function (iterable, callback) {
   var iterator, k, i, l, s;
 
   if (!iterable)
@@ -99,14 +97,13 @@ forEach.forEachWithNullKeys = function(iterable, callback) {
     typeof iterable === 'string' ||
     iterable.toString() === '[object Arguments]'
   ) {
-    for (i = 0, l = iterable.length; i < l; i++)
-      callback(iterable[i], null);
+    for (i = 0, l = iterable.length; i < l; i++) callback(iterable[i], null);
     return;
   }
 
   // The target is a Set
   if (iterable instanceof Set) {
-    iterable.forEach(function(value) {
+    iterable.forEach(function (value) {
       callback(value, null);
     });
     return;
@@ -132,7 +129,7 @@ forEach.forEachWithNullKeys = function(iterable, callback) {
     iterator = iterable;
     i = 0;
 
-    while ((s = iterator.next(), s.done !== true)) {
+    while (((s = iterator.next()), s.done !== true)) {
       callback(s.value, null);
       i++;
     }

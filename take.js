@@ -17,23 +17,19 @@ var iter = require('./iter.js');
  */
 module.exports = function take(iterable, n) {
   var l = arguments.length > 1 ? n : Infinity,
-      array = l !== Infinity ? new Array(l) : [],
-      step,
-      i = 0;
+    array = l !== Infinity ? new Array(l) : [],
+    step,
+    i = 0;
 
   var iterator = iter(iterable);
 
   while (true) {
-
-    if (i === l)
-      return array;
+    if (i === l) return array;
 
     step = iterator.next();
 
     if (step.done) {
-
-      if (i !== n)
-        array.length = i;
+      if (i !== n) array.length = i;
 
       return array;
     }

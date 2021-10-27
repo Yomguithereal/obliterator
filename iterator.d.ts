@@ -1,7 +1,6 @@
 type NextFunction<V> = () => IteratorResult<V>;
 
 export default class Iterator<V> implements IterableIterator<V> {
-
   // Constructor
   constructor(next: NextFunction<V>);
 

@@ -20,8 +20,7 @@ module.exports = function map(mapper, target) {
   return new Iterator(function next() {
     var step = iterator.next();
 
-    if (step.done)
-      return step;
+    if (step.done) return step;
 
     return {
       value: mapper(step.value)

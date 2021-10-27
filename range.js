@@ -20,12 +20,11 @@ module.exports = function range(start, end, step) {
     start = 0;
   }
 
-  if (arguments.length < 3)
-    step = 1;
+  if (arguments.length < 3) step = 1;
 
   var i = start;
 
-  var iterator = new Iterator(function() {
+  var iterator = new Iterator(function () {
     if (i < end) {
       var value = i;
 

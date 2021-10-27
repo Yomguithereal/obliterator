@@ -22,7 +22,7 @@ function Iterator(next) {
  * If symbols are supported, we add `next` to `Symbol.iterator`.
  */
 if (typeof Symbol !== 'undefined')
-  Iterator.prototype[Symbol.iterator] = function() {
+  Iterator.prototype[Symbol.iterator] = function () {
     return this;
   };
 
@@ -32,14 +32,13 @@ if (typeof Symbol !== 'undefined')
  * @param  {any...} values - Values.
  * @return {Iterator}
  */
-Iterator.of = function() {
+Iterator.of = function () {
   var args = arguments,
-      l = args.length,
-      i = 0;
+    l = args.length,
+    i = 0;
 
-  return new Iterator(function() {
-    if (i >= l)
-      return {done: true};
+  return new Iterator(function () {
+    if (i >= l) return {done: true};
 
     return {done: false, value: args[i++]};
   });
@@ -50,8 +49,8 @@ Iterator.of = function() {
  *
  * @return {Iterator}
  */
-Iterator.empty = function() {
-  var iterator = new Iterator(function() {
+Iterator.empty = function () {
+  var iterator = new Iterator(function () {
     return {done: true};
   });
 
@@ -64,12 +63,12 @@ Iterator.empty = function() {
  * @param  {string|Array} sequence - Target sequence.
  * @return {Iterator}
  */
-Iterator.fromSequence = function(sequence) {
-  var i = 0, l = sequence.length;
+Iterator.fromSequence = function (sequence) {
+  var i = 0,
+    l = sequence.length;
 
-  return new Iterator(function() {
-    if (i >= l)
-      return {done: true};
+  return new Iterator(function () {
+    if (i >= l) return {done: true};
 
     return {done: false, value: sequence[i++]};
   });
@@ -81,9 +80,8 @@ Iterator.fromSequence = function(sequence) {
  * @param  {any} value - Value.
  * @return {boolean}
  */
-Iterator.is = function(value) {
-  if (value instanceof Iterator)
-    return true;
+Iterator.is = function (value) {
+  if (value instanceof Iterator) return true;
 
   return (
     typeof value === 'object' &&
