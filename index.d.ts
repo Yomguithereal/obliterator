@@ -6,6 +6,7 @@ export {default as consume} from './consume';
 export {default as filter} from './filter';
 export {default as forEach} from './foreach';
 export {default as forEachWithNullKeys} from './foreach-with-null-keys';
+export {default as includes} from './includes';
 export {default as map} from './map';
 export {default as match} from './match';
 export {default as permutations} from './permutations';

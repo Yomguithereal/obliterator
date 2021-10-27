@@ -30,6 +30,7 @@ _Functions_
 - [filter](#filter)
 - [forEach](#foreach)
 - [forEachWithNullKeys](#foreachwithnullkeys)
+- [includes](#includes)
 - [iter](#iter)
 - [map](#map)
 - [match](#match)
@@ -188,11 +189,29 @@ forEach(set, (value, key) => {
 >>> null, 'banana'
 ```
 
+## includes
+
+Function returning whether the given value can be found in given iterable-like.
+
+```js
+import {includes} from 'obliterator';
+// Or
+import includes from 'obliterator/includes';
+
+includes([1, 2, 3], 3);
+>>> true;
+
+includes('test', 'a');
+>>> false;
+```
+
 ## iter
 
 Function casting any iterable-like value to a proper iterator. Will throw an error if the given value cannot be cast as an iterator.
 
 ```js
+import {iter} from 'obliterator';
+// Or
 import iter from 'obliterator/iter';
 
 iter('test');

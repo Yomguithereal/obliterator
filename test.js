@@ -791,3 +791,14 @@ describe('#.some', function () {
     );
   });
 });
+
+describe('#.includes', function () {
+  it('should properly return whether searched item can be found.', function () {
+    var set = new Set([1, 2, 3]);
+
+    assert.strictEqual(lib.includes(set, 1), true);
+    assert.strictEqual(lib.includes(set.values(), 3), true);
+    assert.strictEqual(lib.includes([1, 2, 3], 14), false);
+    assert.strictEqual(lib.includes(set.values(), '2'), false);
+  });
+});

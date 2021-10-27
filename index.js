@@ -12,6 +12,7 @@ exports.consume = require('./consume.js');
 exports.filter = require('./filter.js');
 exports.forEach = require('./foreach.js');
 exports.forEachWithNullKeys = require('./foreach-with-null-keys.js');
+exports.includes = require('./includes.js');
 exports.map = require('./map.js');
 exports.match = require('./match.js');
 exports.permutations = require('./permutations.js');
