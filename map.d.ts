@@ -1,4 +1,4 @@
-import {default as ObliteratorIterator} from './iterator.js';
+import {default as ObliteratorIterator} from './iterator';
 
 type MapFunction<S, T> = (item: S) => T;
 

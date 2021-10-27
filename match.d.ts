@@ -1,3 +1,3 @@
-import {default as ObliteratorIterator} from './iterator.js';
+import {default as ObliteratorIterator} from './iterator';
 
 export default function match(pattern: RegExp, string: string): ObliteratorIterator<string>;

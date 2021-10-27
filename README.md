@@ -2,7 +2,9 @@
 
 # Obliterator
 
-Obliterator is a dead simple JavaScript/TypeScript library providing miscellaneous higher-order iterator functions such as combining two or more iterators into a single one.
+Obliterator is a dead simple JavaScript/TypeScript library providing miscellaneous higher-order iterator/iterable functions such as combining two or more iterators into a single one.
+
+Note that when possible, `obliterator` also consider sequences such as arrays, strings etc. as valid iterables (although they are not proper ES6 iterables values), for convenience.
 
 # Installation
 
@@ -63,7 +65,7 @@ const multipleIterator = Iterator.of(1, 2, 3);
 
 ## chain
 
-Variadic function chaining all the given iterables.
+Variadic function chaining all the given iterator/iterables.
 
 ```js
 import chain from 'obliterator/chain';

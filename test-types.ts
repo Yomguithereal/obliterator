@@ -6,6 +6,6 @@ const map = new Map();
 
 map.set('two', 2);
 
-const chained: Iterator<number> = chain(set.values(), map.keys());
+const chained: Iterator<number> = chain(set, map.keys());
 
 forEach(set.values(), (item, key) => console.log(item, key));

@@ -1,8 +1,9 @@
 node_modules
 .gitignore
+.github
 .npmignore
 .DS_Store
-.travis.yml
+.vscode
 test.js
 test-types.ts
 benchmark

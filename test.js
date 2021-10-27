@@ -190,6 +190,18 @@ describe('#.filter', function() {
 
     assert.deepEqual(lib.take(iterator), [2, 4]);
   });
+
+  it('should work with arbitrary iterable.', function() {
+    var set = new Set([1, 2, 3, 4, 5]);
+
+    var even = function(a) {
+      return a % 2 === 0;
+    };
+
+    var iterator = lib.filter(even, set);
+
+    assert.deepEqual(lib.take(iterator), [2, 4]);
+  });
 });
 
 describe('#.forEachWithNullKeys', function() {
