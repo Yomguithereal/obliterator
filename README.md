@@ -65,7 +65,7 @@ const multipleIterator = Iterator.of(1, 2, 3);
 
 ## chain
 
-Variadic function chaining all the given iterator/iterables.
+Variadic function chaining all the given iterable-like values.
 
 ```js
 import chain from 'obliterator/chain';

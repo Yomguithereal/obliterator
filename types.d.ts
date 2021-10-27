@@ -1,4 +1,4 @@
-interface Sequence {
+export interface Sequence {
   length: number;
   slice(from: number, to?: number): Sequence;
 }

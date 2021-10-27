@@ -15,7 +15,7 @@ var iter = require('./iter.js');
  * @return {Iterator}
  */
 module.exports = function filter(predicate, target) {
-  const iterator = iter(target);
+  var iterator = iter(target);
 
   return new Iterator(function next() {
     var step = iterator.next();

@@ -525,6 +525,16 @@ describe('#.map', function() {
 
     assert.deepEqual(lib.take(iterator), [2, 3, 4, 5, 6]);
   });
+
+  it('should also work with arbitrary iterables.', function() {
+    var concat = function(a) {
+      return a + 't';
+    };
+
+    var iterator = lib.map(concat, 'abc');
+
+    assert.deepEqual(lib.take(iterator), ['at', 'bt', 'ct']);
+  });
 });
 
 describe('#.match', function() {
@@ -754,6 +764,15 @@ describe('#.takeInto', function() {
     chunk = lib.takeInto(Uint8Array, iterator, 2);
     assert.deepEqual(Array.from(chunk), []);
     assert(chunk instanceof Uint8Array);
+  });
+
+  it('should be able to work with arbitrary iterables.', function() {
+    var set = new Set([1, 2, 3]);
+
+    var array = lib.takeInto(Uint8Array, set, 3);
+
+    assert.deepEqual(Array.from(array), [1, 2, 3]);
+    assert(array instanceof Uint8Array);
   });
 });
 
