@@ -31,7 +31,7 @@ module.exports = function range(start, end, step) {
 
       i += step;
 
-      return {value: value};
+      return {value: value, done: false};
     }
 
     return {done: true};

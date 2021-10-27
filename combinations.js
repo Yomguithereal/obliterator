@@ -49,12 +49,12 @@ module.exports = function combinations(array, r) {
       first = false;
 
       indicesToItems(subsequence, array, indices, r);
-      return {value: subsequence};
+      return {value: subsequence, done: false};
     }
 
     if (indices[r - 1]++ < n - 1) {
       indicesToItems(subsequence, array, indices, r);
-      return {value: subsequence};
+      return {value: subsequence, done: false};
     }
 
     i = r - 2;
@@ -71,6 +71,6 @@ module.exports = function combinations(array, r) {
       indices[i] = indices[i - 1] + 1;
 
     indicesToItems(subsequence, array, indices, r);
-    return {value: subsequence};
+    return {value: subsequence, done: false};
   });
 };

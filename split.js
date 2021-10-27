@@ -63,6 +63,6 @@ module.exports = function split(pattern, string) {
       value = string.slice(current);
     }
 
-    return {value: value};
+    return {value: value, done: false};
   });
 };

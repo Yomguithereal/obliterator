@@ -55,7 +55,7 @@ module.exports = function permutations(array, r) {
     if (first) {
       first = false;
       indicesToItems(subsequence, array, indices, r);
-      return {value: subsequence};
+      return {value: subsequence, done: false};
     }
 
     var tmp,
@@ -90,7 +90,7 @@ module.exports = function permutations(array, r) {
       i = r;
 
       indicesToItems(subsequence, array, indices, r);
-      return {value: subsequence};
+      return {value: subsequence, done: false};
     }
   });
 };
