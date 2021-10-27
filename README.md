@@ -12,7 +12,7 @@ Note that when possible, `obliterator` also consider sequences such as arrays, s
 npm install --save obliterator
 ```
 
-Note `obliterator` comes along with its TypeScript declarations.
+Note that `obliterator` comes along with its TypeScript declarations.
 
 # Usage
 
@@ -35,6 +35,7 @@ _Functions_
 - [match](#match)
 - [permutations](#permutations)
 - [powerSet](#powerSet)
+- [some](#some)
 - [split](#split)
 - [take](#take)
 
@@ -276,6 +277,22 @@ iterator.next().value;
 >>> []
 iterator.next().value;
 >>> ['A']
+```
+
+## some
+
+Returns whether the given iterable-like has some item matching the given predicate.
+
+```js
+import some from 'obliterator/some';
+// Or
+import {some} from 'obliterator';
+
+some(new Set([1, 2, 3]), n => n % 2 === 0);
+>>> true
+
+some('test', c => c === 'a');
+>>> false
 ```
 
 ## split

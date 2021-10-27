@@ -764,3 +764,30 @@ describe('#.takeInto', function () {
     assert(array instanceof Uint8Array);
   });
 });
+
+describe('#.some', function () {
+  it('should properly return whether searched item can be found.', function () {
+    var set = new Set([1, 2, 3]);
+
+    assert.strictEqual(
+      lib.some(set, function (n) {
+        return n === 1;
+      }),
+      true
+    );
+
+    assert.strictEqual(
+      lib.some(set.values(), function (n) {
+        return n === 3;
+      }),
+      true
+    );
+
+    assert.strictEqual(
+      lib.some([1, 2, 3], function (n) {
+        return n === 14;
+      }),
+      false
+    );
+  });
+});

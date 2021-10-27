@@ -11,6 +11,7 @@ export {default as match} from './match';
 export {default as permutations} from './permutations';
 export {default as powerSet} from './power-set';
 export {default as range} from './range';
+export {default as some} from './some';
 export {default as split} from './split';
 export {default as take} from './take';
 export {default as takeInto} from './take-into';

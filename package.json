@@ -1,8 +1,9 @@
 {
   "name": "obliterator",
   "version": "1.6.1",
-  "description": "Higher order iterator library for JavaScript.",
+  "description": "Higher order iterator library for JavaScript/TypeScript.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "eslint *.js",
     "prepublishOnly": "npm run lint && npm test",

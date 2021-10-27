@@ -4,21 +4,20 @@
  *
  * Exporting the library's functions.
  */
-module.exports = {
-  Iterator: require('./iterator.js'),
-  iter: require('./iter.js'),
-  chain: require('./chain.js'),
-  combinations: require('./combinations.js'),
-  consume: require('./consume.js'),
-  filter: require('./filter.js'),
-  forEach: require('./foreach.js'),
-  forEachWithNullKeys: require('./foreach-with-null-keys.js'),
-  map: require('./map.js'),
-  match: require('./match.js'),
-  permutations: require('./permutations.js'),
-  powerSet: require('./power-set.js'),
-  range: require('./range.js'),
-  split: require('./split.js'),
-  take: require('./take.js'),
-  takeInto: require('./take-into.js')
-};
+exports.Iterator = require('./iterator.js');
+exports.iter = require('./iter.js');
+exports.chain = require('./chain.js');
+exports.combinations = require('./combinations.js');
+exports.consume = require('./consume.js');
+exports.filter = require('./filter.js');
+exports.forEach = require('./foreach.js');
+exports.forEachWithNullKeys = require('./foreach-with-null-keys.js');
+exports.map = require('./map.js');
+exports.match = require('./match.js');
+exports.permutations = require('./permutations.js');
+exports.powerSet = require('./power-set.js');
+exports.range = require('./range.js');
+exports.some = require('./some.js');
+exports.split = require('./split.js');
+exports.take = require('./take.js');
+exports.takeInto = require('./take-into.js');
