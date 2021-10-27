@@ -8,8 +8,8 @@
 /**
  * Constants.
  */
-var ARRAY_BUFFER_SUPPORT = typeof ArrayBuffer !== 'undefined',
-  SYMBOL_SUPPORT = typeof Symbol !== 'undefined';
+var ARRAY_BUFFER_SUPPORT = typeof ArrayBuffer !== 'undefined';
+var SYMBOL_SUPPORT = typeof Symbol !== 'undefined';
 
 /**
  * Function able to iterate over almost any iterable JS value.

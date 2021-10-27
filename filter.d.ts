@@ -1,4 +1,4 @@
-import {default as ObliteratorIterator} from './iterator';
+import ObliteratorIterator from './iterator';
 import type {IntoInterator} from './types';
 
 type PredicateFunction<T> = (item: T) => boolean;

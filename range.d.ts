@@ -1,4 +1,4 @@
-import {default as ObliteratorIterator} from './iterator';
+import ObliteratorIterator from './iterator';
 
 export default function range(end: number): ObliteratorIterator<number>;
 export default function range(

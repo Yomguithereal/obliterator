@@ -1,4 +1,4 @@
-import {default as ObliteratorIterator} from './iterator';
+import ObliteratorIterator from './iterator';
 
 export default function powerSet<T>(
   array: Array<T>
