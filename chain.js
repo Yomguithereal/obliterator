@@ -14,12 +14,12 @@ var Iterator = require('./iterator.js'),
  * @return {Iterator}
  */
 module.exports = function chain() {
-  var iterables = arguments,
-    current,
-    i = -1;
+  var iterables = arguments;
+  var current = null;
+  var i = -1;
 
   return new Iterator(function iterate() {
-    if (!current) {
+    if (current === null) {
       i++;
 
       if (i >= iterables.length) return {done: true};

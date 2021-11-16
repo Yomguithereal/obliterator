@@ -16,13 +16,12 @@ var iter = require('./iter.js');
  */
 module.exports = function filter(target, predicate) {
   var iterator = iter(target);
+  var step;
 
-  return new Iterator(function next() {
-    var step = iterator.next();
-
-    if (step.done) return step;
-
-    if (!predicate(step.value)) return next();
+  return new Iterator(function () {
+    do {
+      step = iterator.next();
+    } while (!step.done && !predicate(step.value));
 
     return step;
   });
