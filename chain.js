@@ -4,8 +4,8 @@
  *
  * Variadic function combining the given iterables.
  */
-var Iterator = require('./iterator.js'),
-  iter = require('./iter.js');
+var Iterator = require('./iterator.js');
+var iter = require('./iter.js');
 
 /**
  * Chain.
@@ -18,21 +18,28 @@ module.exports = function chain() {
   var current = null;
   var i = -1;
 
-  return new Iterator(function iterate() {
-    if (current === null) {
-      i++;
+  /* eslint-disable no-constant-condition */
+  return new Iterator(function next() {
+    var step = null;
 
-      if (i >= iterables.length) return {done: true};
+    do {
+      if (current === null) {
+        i++;
 
-      current = iter(iterables[i]);
-    }
+        if (i >= iterables.length) return {done: true};
 
-    var step = current.next();
+        current = iter(iterables[i]);
+      }
 
-    if (step.done) {
-      current = null;
-      return iterate();
-    }
+      step = current.next();
+
+      if (step.done === true) {
+        current = null;
+        continue;
+      }
+
+      break;
+    } while (true);
 
     return step;
   });
