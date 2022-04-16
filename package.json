@@ -1,6 +1,6 @@
 {
   "name": "obliterator",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Higher order iterator library for JavaScript/TypeScript.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -30,11 +30,11 @@
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.4.0",
     "@yomguithereal/prettier-config": "^1.2.0",
-    "eslint": "^8.2.0",
-    "eslint-config-prettier": "^8.3.0",
-    "mocha": "^9.1.3",
-    "prettier": "^2.4.1",
-    "typescript": "^4.4.4"
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "mocha": "^9.2.2",
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.3"
   },
   "eslintConfig": {
     "extends": [
