@@ -15,4 +15,4 @@ export type AnyMapping<K, V> = K extends keyof any
   : Mapping<K, V>;
 
 export type IntoInterator<T> = Iterable<T> | Iterator<T> | Sequence<T>;
-export type IntoEntriesIterator<K, V> = IntoInterator<[key: K, value: V]>;
+export type IntoEntriesIterator<K, V> = IntoInterator<[K, V]>;
