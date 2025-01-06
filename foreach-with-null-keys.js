@@ -44,9 +44,11 @@ module.exports = function forEachWithNullKeys(iterable, callback) {
     return;
   }
 
-  // The target has a #.forEach method
-  if (typeof iterable.forEach === 'function') {
-    iterable.forEach(callback);
+  // The target is a Map
+  if (iterable instanceof Map) {
+    iterable.forEach(function (value, key) {
+      callback(value, key);
+    });
     return;
   }
 
@@ -69,6 +71,14 @@ module.exports = function forEachWithNullKeys(iterable, callback) {
       i++;
     }
 
+    return;
+  }
+
+  // The target has a #.forEach method
+  // NOTE: there is now a JS builtin `Iterator` class having a #.forEach method.
+  // This is why this branch cannot happen earlier.
+  if (typeof iterable.forEach === 'function') {
+    iterable.forEach(callback);
     return;
   }
 
