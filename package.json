@@ -1,8 +1,8 @@
 {
   "name": "obliterator",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "Higher order iterator library for JavaScript/TypeScript.",
-  "main": "index.js",
+  "type": "commonjs",
   "types": "index.d.ts",
   "scripts": {
     "lint": "eslint *.js",
@@ -10,6 +10,29 @@
     "prettier": "prettier --write '*.js' '*.ts'",
     "test": "mocha test.js && npm run test:types",
     "test:types": "tsc --lib es2015,dom --noEmit --noImplicitAny --noImplicitReturns ./test-types.ts"
+  },
+  "exports": {
+    ".": {
+      "import": "./wrapper.mjs",
+      "require": "./index.js"
+    },
+    "./iterator": "./iterator.js",
+    "./chain": "./chain.js",
+    "./combinations": "./combinations.js",
+    "./consume": "./consume.js",
+    "./every": "./every.js",
+    "./filter": "./filter.js",
+    "./find": "./find.js",
+    "./foreach": "./foreach.js",
+    "./includes": "./includes.js",
+    "./iter": "./iter.js",
+    "./map": "./map.js",
+    "./match": "./match.js",
+    "./permutations": "./permutations.js",
+    "./power-set": "./power-set.js",
+    "./some": "./some.js",
+    "./split": "./split.js",
+    "./take": "./take.js"
   },
   "repository": {
     "type": "git",
