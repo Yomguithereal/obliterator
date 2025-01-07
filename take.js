@@ -1,3 +1,8 @@
+// eslint-disable-next-line no-console
+console.warn(
+  "[obliterator] 'take' is deprecated since version 2.0.6 and will be removed in version 3. Use Array.from() instead: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"
+);
+
 /* eslint no-constant-condition: 0 */
 /**
  * Obliterator Take Function
@@ -10,6 +15,8 @@ var iter = require('./iter.js');
 
 /**
  * Take.
+ *
+ * @deprecated since version 2.0.6 and will be removed in version 3. Use Array.from() instead: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
  *
  * @param  {Iterable} iterable - Target iterable.
  * @param  {number}   [n]      - Optional number of items to take.
