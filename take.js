@@ -16,6 +16,15 @@ var iter = require('./iter.js');
  * @return {array}
  */
 module.exports = function take(iterable, n) {
+
+  if (typeof Iterator === 'function') {
+    /* eslint-disable no-undef */
+    if(typeof Iterator.take === 'function') {
+      return Array.from(Iterator.take(iterable, n));
+    }
+    /* eslint-enable no-undef */
+  }
+
   var l = arguments.length > 1 ? n : Infinity,
     array = l !== Infinity ? new Array(l) : [],
     step,
