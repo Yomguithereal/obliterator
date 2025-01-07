@@ -1,4 +1,4 @@
-import cjsModule from './index.cjs';
+import cjsModule from './index.js';
 
 export const Iterator = cjsModule.Iterator;
 export const iter = cjsModule.iter
