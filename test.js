@@ -541,6 +541,33 @@ describe('#.map', function () {
 });
 
 describe('#.match', function () {
+  function assertMatches(pattern, string, expected) {
+    var source = pattern.source,
+      flags = pattern.flags,
+      iterator = lib.match(pattern, string),
+      matches = [];
+
+    // A bounded read fails promptly if an empty match is returned forever.
+    for (var i = 0; i < expected.length; i++) {
+      var step = iterator.next();
+      assert.notStrictEqual(step.done, true);
+      matches.push(step.value);
+    }
+
+    assert.deepEqual(
+      matches.map(function (match) {
+        return [match.index, match[0]];
+      }),
+      expected
+    );
+    assert.strictEqual(iterator.next().done, true);
+    assert.strictEqual(pattern.lastIndex, 0);
+    assert.strictEqual(pattern.source, source);
+    assert.strictEqual(pattern.flags, flags);
+
+    return matches;
+  }
+
   it('should throw when given invalid arguments.', function () {
     assert.throws(function () {
       lib.match(null);
@@ -567,6 +594,102 @@ describe('#.match', function () {
     result = lib.take(iterator).map(index);
 
     assert.deepEqual(result, [0, 3]);
+  });
+
+  it('should advance after empty global matches, including the end of the string.', function () {
+    assertMatches(/(?=t)/g, 'test', [
+      [0, ''],
+      [3, '']
+    ]);
+    assertMatches(/(?:)/g, '', [[0, '']]);
+    assertMatches(/^|$/g, 'test', [
+      [0, ''],
+      [4, '']
+    ]);
+    assertMatches(/t*/g, 'test', [
+      [0, 't'],
+      [1, ''],
+      [2, ''],
+      [3, 't'],
+      [4, '']
+    ]);
+  });
+
+  it('should advance by code point only for Unicode patterns.', function () {
+    assertMatches(/(?:)/g, '\ud83d\ude00x', [
+      [0, ''],
+      [1, ''],
+      [2, ''],
+      [3, '']
+    ]);
+    assertMatches(new RegExp('(?:)', 'gu'), '\ud83d\ude00x', [
+      [0, ''],
+      [2, ''],
+      [3, '']
+    ]);
+    assertMatches(new RegExp('(?:)', 'gu'), '\ud800x', [
+      [0, ''],
+      [1, ''],
+      [2, '']
+    ]);
+    assertMatches(new RegExp('(?:)', 'gu'), '\udc00x', [
+      [0, ''],
+      [1, ''],
+      [2, '']
+    ]);
+    assertMatches(new RegExp('(?:)', 'gu'), '\ud800\ud800\udc00', [
+      [0, ''],
+      [1, ''],
+      [3, '']
+    ]);
+  });
+
+  it('should advance by code point for Unicode sets when supported.', function () {
+    var pattern;
+    try {
+      // The v flag is feature-detected because older engines reject it.
+      // eslint-disable-next-line no-invalid-regexp
+      pattern = new RegExp('(?:)', 'gv');
+    } catch (error) {
+      if (error instanceof SyntaxError) return this.skip();
+      throw error;
+    }
+
+    assertMatches(pattern, '\ud83d\ude00x', [
+      [0, ''],
+      [2, ''],
+      [3, '']
+    ]);
+  });
+
+  it('should start from an existing lastIndex when advancing empty matches.', function () {
+    var pattern = /(?=t)/g;
+    pattern.lastIndex = 3;
+    assertMatches(pattern, 'test', [[3, '']]);
+  });
+
+  it('should preserve captures and flags while advancing empty matches.', function () {
+    var matches = assertMatches(/(?=(t))/gi, 'Test', [
+      [0, ''],
+      [3, '']
+    ]);
+    assert.deepEqual(
+      matches.map(function (match) {
+        return match[1];
+      }),
+      ['T', 't']
+    );
+  });
+
+  it('should still return only one empty match for a non-global pattern.', function () {
+    var pattern = /(?:)/;
+    pattern.lastIndex = 2;
+    var iterator = lib.match(pattern, 'test');
+
+    assert.strictEqual(iterator.next().value.index, 0);
+    assert.strictEqual(pattern.lastIndex, 2);
+    assert.strictEqual(iterator.next().done, true);
+    assert.strictEqual(pattern.lastIndex, 0);
   });
 });
 

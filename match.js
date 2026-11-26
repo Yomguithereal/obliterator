@@ -35,7 +35,25 @@ module.exports = function match(pattern, string) {
 
     var m = pattern.exec(string);
 
-    if (m) return {value: m};
+    if (m) {
+      // Empty matches don't move lastIndex. Unicode modes advance by a full code point.
+      if (pattern.global && m[0] === '') {
+        var index = pattern.lastIndex,
+          first = string.charCodeAt(index),
+          second = string.charCodeAt(index + 1);
+
+        pattern.lastIndex +=
+          (pattern.unicode || pattern.unicodeSets) &&
+          first >= 0xd800 &&
+          first <= 0xdbff &&
+          second >= 0xdc00 &&
+          second <= 0xdfff
+            ? 2
+            : 1;
+      }
+
+      return {value: m};
+    }
 
     pattern.lastIndex = 0;
     return {done: true};
